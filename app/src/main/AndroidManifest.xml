@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Hotel">
         <activity
+            android:name=".intro.OnBoarding"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
