@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.booking_hotel.activity.test_login;
 import com.mahfa.dnswitch.DayNightSwitch;
@@ -76,19 +77,20 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        btn_login1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Login.this, Home.class);
-                startActivity(intent);
-            }
-        });
+
 
         dangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 formlogin.setVisibility(View.GONE);
                 formlogup.setVisibility(View.VISIBLE);
+                btn_login1.setText("Đăng ký");
+                btn_login1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Login.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         dangnhap.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +98,14 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 formlogin.setVisibility(View.VISIBLE);
                 formlogup.setVisibility(View.GONE);
+                btn_login1.setText("Đăng nhập");
+                btn_login1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Login.this, Home.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
         //
