@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/Gold"
-    tools:context=".kotlin.test_login">
+    android:background="@color/Gold">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +32,7 @@
                 android:background="@drawable/switch_tumbs"
                 android:backgroundTint="@color/white"
                 android:layout_gravity="center">
+
                 <TextView
                     android:id="@+id/login1"
                     android:layout_width="0dp"
@@ -51,8 +51,9 @@
                     android:textStyle="bold|normal"
                     android:backgroundTint="@color/Red_Crimson"
                     android:background="@drawable/switch_trcks"/>
+
                 <TextView
-                    android:id="@+id/dangky1"
+                    android:id="@+id/dangKy1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
