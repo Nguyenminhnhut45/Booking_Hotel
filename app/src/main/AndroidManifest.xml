@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Hotel">
         <activity
+            android:name=".activity.Register"
+            android:exported="false" />
+        <activity
+            android:name=".activity.profile"
+            android:exported="false" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
