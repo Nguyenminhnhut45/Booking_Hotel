@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bg_night"
@@ -156,6 +156,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/btn_forgot_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
@@ -183,6 +184,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:hint="Tài khoản"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
                     app:boxStrokeColor="@color/white"
                     app:boxStrokeWidth="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -316,6 +319,11 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp" />
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -340,6 +348,8 @@
                     android:layout_margin="10dp" />
             </LinearLayout>
         </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -369,7 +379,7 @@
     <ImageView
         android:id="@+id/day_landscape"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:src="@drawable/travel1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -380,7 +390,7 @@
     <ImageView
         android:id="@+id/night_landscape"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:src="@drawable/travel1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
