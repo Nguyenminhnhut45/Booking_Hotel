@@ -80,7 +80,10 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
      //   loginButton.setFragment(this);
 
         // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
@@ -91,6 +94,8 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
             @Override
             public void onCancel() {
                 // App code
+                Intent intent = new Intent(Login.this, Login.class);
+                startActivity(intent);
             }
 
             @Override
@@ -98,6 +103,9 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
                 // App code
             }
         });
+            }
+        });
+//
 
         callbackManager = CallbackManager.Factory.create();
 
