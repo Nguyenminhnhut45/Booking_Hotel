@@ -463,8 +463,6 @@ public class Login extends Activity {
                 intent.putExtra("Birthday", customerModel.getBrithday());
 
                 startActivity(intent);
-
-
             }
             // updateUI(account);
         } catch (ApiException e) {
