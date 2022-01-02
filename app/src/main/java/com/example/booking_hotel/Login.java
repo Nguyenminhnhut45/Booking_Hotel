@@ -22,6 +22,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.example.booking_hotel.activity.test_login;
 import com.facebook.login.LoginManager;
@@ -42,12 +43,14 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
     ImageView sun, dayland, nightland,moon;
     View daysky, nightsky;
    DayNightSwitch dayNightSwitch;
-
+public static String useridfb;
+public static String imgFb;
+    public static String NameFb;
     TextView btn_login, btn_dangky, btn_quenmk;
 
     Button btn_login1;
     LinearLayout formlogin, formlogup;
-    TextView dangnhap, dangky;
+    TextView dangnhap, dangky,txtqmk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
-
+        txtqmk=findViewById(R.id.txtqmk);
         sun = findViewById(R.id.sun);
         moon = findViewById(R.id.moon);
         dayland = findViewById(R.id.day_landscape);
@@ -72,7 +75,7 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
         dangnhap = findViewById(R.id.login1);
         formlogin = findViewById(R.id.layoutLogin);
         formlogup = findViewById(R.id.layoutLoginUp);
-
+        Profile profile = Profile.getCurrentProfile();
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
@@ -88,6 +91,11 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Intent intent = new Intent(Login.this, Home.class);
+                Login.useridfb= loginResult.getAccessToken().getUserId();
+
+                Login.NameFb=profile.getName();
+                       String img= "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                Login.imgFb=img;
                 startActivity(intent);
             }
 
@@ -115,6 +123,10 @@ CallbackManager callbackManager = CallbackManager.Factory.create();
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         Intent intent = new Intent(Login.this, Home.class);
+                        Login.useridfb= loginResult.getAccessToken().getUserId();
+                        Login.NameFb=profile.getName();
+                        String img= "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                        Login.imgFb=img;
                         startActivity(intent);
                     }
 

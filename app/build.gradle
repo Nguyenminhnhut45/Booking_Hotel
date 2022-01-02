@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     //
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.squareup.okhttp3:okhttp:4.6.0'
     implementation fileTree(dir: 'C:\\Users\\Hai Dang\\AndroidStudioProjects\\Booking hotel\\Booking_Hotel\\zpdk_v2.0.4\\zpdk_v2.0.4\\android', include: ['*.aar', '*.jar'], exclude: [])
 
