@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
 import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
@@ -29,6 +30,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.example.booking_hotel.activity.test_login;
 import com.facebook.login.LoginManager;
@@ -67,7 +69,9 @@ public class Login extends Activity {
     LinearLayout formlogin, formlogup;
     TextView dangnhap, dangky;
     GoogleSignInClient mGoogleSignInClient;
-
+public  static  String FacebookName;
+    public  static  String ImgName;
+    public  static  String FacebookID;
     private Method method;
     private CustomerModel customerModel;
     @Override
@@ -78,7 +82,7 @@ public class Login extends Activity {
         //FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
-
+        Profile profile = Profile.getCurrentProfile();
         method = ApiUtils.getSOService();
 
         txt_taikhoan = findViewById(R.id.txt_taikhoan);
@@ -139,7 +143,7 @@ public class Login extends Activity {
 
         // If using in a fragment
         //   loginButton.setFragment(this);
-       /* loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -147,6 +151,10 @@ public class Login extends Activity {
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         Intent intent = new Intent(Login.this, Home.class);
+                       Login.FacebookName =profile.getName();
+                       Login.FacebookID=loginResult.getAccessToken().getUserId();
+                       String img= "https://graph.facebook.com/"+ loginResult.getAccessToken().getUserId()+"/picture?return_ssl_resources=1";
+                        Login.ImgName=img;
                         startActivity(intent);
                     }
 
@@ -167,7 +175,7 @@ public class Login extends Activity {
         // Callback registration
 
 
-        /*callbackManager = CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -175,6 +183,10 @@ public class Login extends Activity {
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         Intent intent = new Intent(Login.this, Home.class);
+                        Login.FacebookName =profile.getName();
+                        Login.FacebookID=loginResult.getAccessToken().getUserId();
+                        String img= "https://graph.facebook.com/"+ loginResult.getAccessToken().getUserId()+"/picture?return_ssl_resources=1";
+                        Login.ImgName=img;
                         startActivity(intent);
                     }
 
@@ -190,7 +202,7 @@ public class Login extends Activity {
                 });
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();*/
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
 
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));

@@ -32,8 +32,8 @@ public class Account extends Fragment {
         btn_logout = (TextView) view.findViewById(R.id.btn_logout);
         imgFB=(ImageView)view.findViewById(R.id.imgFB);
 
-        Picasso.get().load(Login.imgFb).into(imgFB);
-btn_profile.setText(Login.NameFb);
+        Picasso.get().load(Login.ImgName).into(imgFB);
+btn_profile.setText(Login.FacebookName);
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
