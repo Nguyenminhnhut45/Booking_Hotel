@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.booking_hotel.Login;
 import com.example.booking_hotel.R;
+import com.example.booking_hotel.activity.ChiTietPhong;
 import com.example.booking_hotel.activity.profile;
 import com.squareup.picasso.Picasso;
 
@@ -21,7 +22,7 @@ import com.squareup.picasso.Picasso;
 public class Account extends Fragment {
 
 
-    TextView btn_profile,btn_logout;
+    TextView btn_profile,btn_logout,btn_test1;
     ImageView imgFB;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +32,7 @@ public class Account extends Fragment {
         btn_profile = (TextView) view.findViewById(R.id.btn_profile);
         btn_logout = (TextView) view.findViewById(R.id.btn_logout);
         imgFB=(ImageView)view.findViewById(R.id.imgFB);
+        btn_test1 = (TextView) view.findViewById(R.id.btn_test1);
 
         Picasso.get().load(Login.ImgName).into(imgFB);
 btn_profile.setText(Login.FacebookName);
@@ -46,6 +48,14 @@ btn_profile.setText(Login.FacebookName);
             @Override
             public void onClick(View view) {
                 System.exit(0);
+            }
+        });
+
+        btn_test1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ChiTietPhong.class);
+                startActivity(intent);
             }
         });
 

@@ -2,20 +2,35 @@ package com.example.booking_hotel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.booking_hotel.fragment.Account;
 import com.example.booking_hotel.fragment.button_2;
 import com.example.booking_hotel.fragment.home;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
+
+    //Drawer menu
+    static final float END_SCALE = 0.7f;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ImageView menu_icon;
+    LinearLayout contentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,23 +38,55 @@ public class Home extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
+        //hooks
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigation_view);
+        menu_icon = findViewById(R.id.menu_icon);
+        contentView = findViewById(R.id.content);
+        //
+        navigationDrawer();
+
         home home = new home();
 
         loadFragment(home);
-        bottomNavigationView = findViewById(R.id.nav_menu);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+    }
+
+    private void navigationDrawer() {
+
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.menu1_home);
+
+        menu_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                home home = new home();
+
+                loadFragment(home);
                 Fragment fragment;
                 switch (item.getItemId()){
-                    case R.id.menu_home:
+                    case R.id.menu1_home:
                         loadFragment(home);
+                        onBackPressed();
                         return true;
 
-                    case R.id.menu_2:
+                    case R.id.menu1_Search:
                         fragment = new button_2();
                         loadFragment(fragment);
+                        onBackPressed();
                         return true;
 
 //                    case R.id.menu_3:
@@ -47,21 +94,59 @@ public class Home extends AppCompatActivity {
 //                        loadFragment(fragment);
 //                        return true;
 //
-                    case R.id.menu_4:
+                    case R.id.menu1_Profile:
                         fragment = new Account();
                         loadFragment(fragment);
+                        onBackPressed();
                         return true;
                 }
                 return false;
             }
         });
 
+        animateNavigationDrawer();
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
 
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return true;
+    }
+
+    public void animateNavigationDrawer(){
+        drawerLayout.setScrimColor(getResources().getColor(R.color.Gold));
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                final float diffScaledOffset = slideOffset * (1 - END_SCALE);
+                final float offsetScale = 1 - diffScaledOffset;
+                contentView.setScaleX(offsetScale);
+                contentView.setScaleY(offsetScale);
+
+                final float xOffSet = drawerView.getWidth() * slideOffset;
+                final float xOffSetDiff = contentView.getWidth() * diffScaledOffset / 2;
+                final float xTranslation = xOffSet - xOffSetDiff;
+                contentView.setTranslationX(xTranslation);
+            }
+        });
+    }
+
+
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.continer,fragment);
         fragmentTransaction.commit();
     }
+
+
 }

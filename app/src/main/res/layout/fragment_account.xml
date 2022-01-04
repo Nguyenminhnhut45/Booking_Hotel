@@ -56,6 +56,27 @@
             app:layout_constraintTop_toBottomOf="@+id/profile_img"
             tools:ignore="RtlCompat" />
         <TextView
+            android:id="@+id/btn_test1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="chi tiết phòng"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:background="@color/White_WhiteSmoke"
+            android:textAlignment="viewStart"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintWidth_percent=".8"
+            android:drawableLeft="@drawable/ic_exit"
+            android:drawablePadding="18dp"
+            android:elevation="3dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_img"
+            android:layout_marginBottom="10dp"
+            tools:ignore="RtlCompat" />
+        <TextView
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

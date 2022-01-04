@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="navigationTheme">
+        <item name="colorPrimary">@color/Gold</item>
+        <item name="colorControlHighlight">@color/Black</item>
+    </style>
+</resources>
