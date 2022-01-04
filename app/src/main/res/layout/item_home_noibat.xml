@@ -10,7 +10,7 @@
     android:layout_marginTop="5dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img_room"
         android:layout_width="0dp"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,33 +19,33 @@
         app:srcCompat="@drawable/viewhomestay4" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txt_namehotel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="AM Lake"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/img_room" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txt_gia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Lâm Đồng"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_namehotel" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/txt_khuvuc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_gia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,15 +46,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp">
+
                 <TextView
                     android:id="@+id/CTP_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:text="Khách sạn Chuông Đà Lạt HANZ (HANZ Chuong Hotel Da Lat)"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
                     android:textColor="@color/Black"
-                    android:fontFamily="sans-serif"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/CTP_danhgia"
                     android:layout_width="wrap_content"
@@ -130,6 +131,7 @@
                             android:text="42/11 Ha Huy Tap, Ward 3, Dalat, Trung tâm Đà Lạt, Đà Lạt"
                             android:textSize="16sp"
                             android:textStyle="bold"
+                            android:id="@+id/Txt_address"
                             android:textColor="@color/black"
                             android:layout_marginLeft="5dp"/>
 
@@ -167,13 +169,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="- Số lượng:"
+                            android:text="- Mô tả:"
                             android:textSize="16sp"
                             android:fontFamily="sans-serif"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4 người"
+                            android:id="@+id/txt_mota"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
@@ -224,10 +227,9 @@
                             android:orientation="horizontal"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Nhựt Nguyễn: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
+                          <EditText
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"

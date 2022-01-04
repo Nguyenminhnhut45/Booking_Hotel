@@ -1,9 +1,12 @@
 package com.example.lib.Data.Remote;
 
 import com.example.lib.Data.Model.CustomerModel;
+import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
 import com.example.lib.Data.ResultModel.PostCustomer;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -24,4 +27,6 @@ public interface Method {
 
     @GET ("api/Customer/{id}")
     Call<CustomerModel> GetCustomer (@Path("id") String id);
+    @GET("api/Room")
+    Call<List<Room>> getRoom();
 }
