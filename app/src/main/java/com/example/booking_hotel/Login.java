@@ -330,12 +330,18 @@ public  static  String FacebookName;
             public void onResponse(Call<StatusModel> call, Response<StatusModel> response) {
 
                 if (response.body().getStatusCode() == true) {
+
+                   // Log.v("idCustomer", response.body().getUsers().getIduser());
+
                     Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, Home.class);
-                   method.GetCustomer(response.body().getUsers().getIduser()).enqueue(new Callback<CustomerModel>() {
+
+
+                    method.GetCustomerByIdUser(response.body().getUsers().getIduser()).enqueue(new Callback<CustomerModel>() {
                        @Override
                        public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
                            Login.idCustomer=response.body().getIdcustomer();
+                           Log.v("idCustomer", idCustomer);
 
                        }
 

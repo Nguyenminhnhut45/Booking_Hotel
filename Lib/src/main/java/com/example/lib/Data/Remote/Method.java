@@ -5,6 +5,7 @@ import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
+import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.example.lib.Data.ResultModel.PostCustomer;
 
 import java.util.List;
@@ -31,6 +32,15 @@ public interface Method {
 
     @GET ("api/Customer/{id}")
     Call<CustomerModel> GetCustomer (@Path("id") String id);
+
+    @GET ("api/Customer/get-iduser")
+    Call<CustomerModel> GetCustomerByIdUser (@Query("id") String id);
+
+    @POST ("api/Booking/insert-bookingdetail/{dateStart}/{dateEnd}/{idRoom}/{idBooking}")
+    Call <PostBookingDetail> post(@Path("dateStart") String dateStart, @Path("dateEnd") String dateEnd, @Path("ỉdRoom") String idRoom
+    , @Path("idBooking") String idBooking);
+
+
     @GET("api/Room")
     Call<List<Room>> getRoom();
 

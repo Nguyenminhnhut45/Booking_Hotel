@@ -3,6 +3,8 @@ package com.example.lib.Data.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class CustomerModel {
 
@@ -42,6 +44,17 @@ public class CustomerModel {
     @SerializedName("idfacebook")
     @Expose
     private String idfacebook;
+
+    @SerializedName("iduserNavigation")
+    @Expose
+    private UserModel iduserNavigation;
+
+    @SerializedName("bookings")
+    @Expose
+    private List<Object> bookings = null;
+    @SerializedName("feedBacks")
+    @Expose
+    private List<Object> feedBacks = null;
 
     public String getIdcustomer() {
         return idcustomer;
@@ -137,6 +150,33 @@ public class CustomerModel {
     public void setIdfacebook(String idfacebook) {
         this.idfacebook = idfacebook;
     }
+
+
+    public UserModel getIduserNavigation() {
+        return iduserNavigation;
+    }
+
+    public void setIduserNavigation(UserModel iduserNavigation) {
+        this.iduserNavigation = iduserNavigation;
+    }
+
+    public List<Object> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Object> bookings) {
+        this.bookings = bookings;
+    }
+
+    public List<Object> getFeedBacks() {
+        return feedBacks;
+    }
+
+    public void setFeedBacks(List<Object> feedBacks) {
+        this.feedBacks = feedBacks;
+    }
+
+
 
 }
 
