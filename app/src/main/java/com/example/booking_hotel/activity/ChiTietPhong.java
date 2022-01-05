@@ -5,18 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+import android.view.Display;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.booking_hotel.R;
 import com.example.booking_hotel.adapter.photoViewpager2Adapter;
 import com.example.booking_hotel.loadimg.photo;
+import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 import me.relex.circleindicator.CircleIndicator3;
 
 public class ChiTietPhong extends AppCompatActivity {
@@ -24,6 +34,12 @@ TextView CT_Gia,address,Hotelname,Mota;
     private ViewPager2 mViewPager2;
     private CircleIndicator3 mCircleIndicator3;
     private List<photo> mListPhoto;
+    Button btn_datphong;
+    public static Bitmap im;
+    private static String idroom;
+    Bitmap bitmap;
+    QRGEncoder qrgEncoder;
+
     private static String img;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private Runnable mRunnable = new Runnable() {
@@ -44,7 +60,7 @@ TextView CT_Gia,address,Hotelname,Mota;
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_chi_tiet_phong);
-
+        btn_datphong=findViewById(R.id.btn_datphong);
         mViewPager2 = findViewById(R.id.viewpager2);
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
         CT_Gia=findViewById(R.id.CTP_gia);
@@ -56,6 +72,50 @@ TextView CT_Gia,address,Hotelname,Mota;
         mViewPager2.setAdapter(adapter);
         mCircleIndicator3.setViewPager(mViewPager2);
 loaddataFromAdapter();
+btn_datphong.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        // below line is for getting
+        // the windowmanager service.
+        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+        // initializing a variable for default display.
+        Display display = manager.getDefaultDisplay();
+
+        // creating a variable for point which
+        // is to be displayed in QR Code.
+        Point point = new Point();
+        display.getSize(point);
+
+        // getting width and
+        // height of a point
+        int width = point.x;
+        int height = point.y;
+
+        // generating dimension from width and height.
+        int dimen = width < height ? width : height;
+        dimen = dimen * 3 / 4;
+        String test ="hellooo";
+        // setting this dimensions inside our qr code
+        // encoder to generate our qr code.
+        qrgEncoder = new QRGEncoder("Tên Khách sạn"+Hotelname.getText().toString()+"\n"+"Địa chỉ"+CT_Gia.getText().toString()+"\n", null, QRGContents.Type.TEXT, dimen);
+        try {
+            // getting our qrcode in the form of bitmap.
+            bitmap = qrgEncoder.encodeAsBitmap();
+            // the bitmap is set inside our image
+            // view using .setimagebitmap method.
+          //  qrCodeIV.setImageBitmap(bitmap);
+            Intent intent= new Intent(ChiTietPhong.this,ConfilmPay.class);
+            //   intent.putExtra("img",bitmap);
+            ChiTietPhong.im=bitmap;
+            startActivity(intent);
+        } catch (WriterException e) {
+            // this method is called for
+            // exception handling.
+            Log.e("Tag", e.toString());
+        }
+    }
+});
         mViewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -101,5 +161,6 @@ loaddataFromAdapter();
         Hotelname.setText(intent.getStringExtra("tenks"));
                 Mota.setText(intent.getStringExtra("mota"));
                 img=intent.getStringExtra("hinh");
+                ChiTietPhong.idroom=intent.getStringExtra("idroom");
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lib.Data.Remote;
 
+import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
@@ -22,6 +23,9 @@ public interface Method {
     @POST("api/User/insert-user")
     Call<UserModelPost> InsertUser(@Body UserModelPost userModelPost);
 
+    @POST("/api/Booking/insert-booking")
+    Call<BookingModel> InsertBooking(@Body BookingModel bookingModel);
+
     @POST ("api/Customer/insert-customergoogle")
     Call<PostCustomer> InsertCustomer (@Body CustomerModel customerModel);
 
@@ -29,4 +33,5 @@ public interface Method {
     Call<CustomerModel> GetCustomer (@Path("id") String id);
     @GET("api/Room")
     Call<List<Room>> getRoom();
+
 }

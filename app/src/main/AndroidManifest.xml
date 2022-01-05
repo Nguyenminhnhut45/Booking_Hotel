@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Hotel">
         <activity
+            android:name=".activity.ConfilmPay"
+            android:exported="false" />
+        <activity
             android:name=".activity.Activity_Xephang"
             android:exported="false" />
         <activity

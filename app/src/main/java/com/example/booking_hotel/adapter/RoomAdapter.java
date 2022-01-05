@@ -41,7 +41,7 @@ public class RoomAdapter extends ArrayAdapter<Room> {
         Picasso.get().load(pr.getImage()).into(imgStudent);
 
         txtName.setText("Tên: "+pr.getIdHotelNavigation().getHotelName());
-        txtGia.setText("Gia: " + pr.getPrice());
+        txtGia.setText("Gia: " + pr.getPrice().toString());
 
         return view;
     }

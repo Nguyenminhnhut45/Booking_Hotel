@@ -62,7 +62,7 @@ public class Login extends Activity {
     ImageView sun, dayland, nightland, moon;
     View daysky, nightsky;
     DayNightSwitch dayNightSwitch;
-
+public static String idCustomer;
     TextView btn_login, btn_dangky, btn_quenmk;
     TextInputEditText txt_taikhoan, txt_matkhau, txt_taikhoandk, txt_matkhaudk, txt_hotendk, txt_emaildk;
     Button btn_login1;
@@ -332,6 +332,18 @@ public  static  String FacebookName;
                 if (response.body().getStatusCode() == true) {
                     Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, Home.class);
+                   method.GetCustomer(response.body().getUsers().getIduser()).enqueue(new Callback<CustomerModel>() {
+                       @Override
+                       public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
+                           Login.idCustomer=response.body().getIdcustomer();
+
+                       }
+
+                       @Override
+                       public void onFailure(Call<CustomerModel> call, Throwable t) {
+
+                       }
+                   });
                     startActivity(intent);
                 } else {
                     Toast.makeText(Login.this, "Vui lòng kiểm tra lại thông tin đăng nhập!", Toast.LENGTH_SHORT).show();

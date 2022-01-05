@@ -320,4 +320,5 @@
     <color name="Yellow_GoldenRod">#DAA520</color>
     <color name="Yellow_LightYellow">#FFFFE0</color>
     <color name="Yellow_PaleGoldenrod">#EEE8AA</color>
+    <color name="lightWhite">#D0F3F1F1</color>
 </resources>

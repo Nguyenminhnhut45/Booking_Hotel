@@ -49,7 +49,7 @@ public class Recyclerview_Search extends RecyclerView.Adapter<Recyclerview_Searc
         String url = filterList.get(position).getImage();
         Picasso.get().load(url).into(holder.imvHSP);
      holder.txtTSP.setText(filterList.get(position).getIdHotelNavigation().getHotelName());
-     holder.Gia.setText( filterList.get(position).getPrice().toString());
+    holder.Gia.setText( filterList.get(position).getPrice().toString());
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +60,7 @@ public class Recyclerview_Search extends RecyclerView.Adapter<Recyclerview_Searc
                 intent.putExtra("mota",filterList.get(position).getDescription());
                 intent.putExtra("diachi",filterList.get(position).getIdHotelNavigation().getAddress());
                 intent.putExtra("hinh",filterList.get(position).getImage());
+                intent.putExtra("idroom",filterList.get(position).getIdroom());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);
             }
