@@ -93,7 +93,7 @@ ImageView imageView;
                                 public void onResponse(Call<PostBooking> call, Response<PostBooking> response) {
 
                                     Log.v("id", response.body().getId());
-                                    methods.PostBookingDetail("2021-02-02", "2021-02-02" ,"6e7fe57d-c905-42af-9a47-99393e47424a", "E1-03").enqueue(new Callback<PostBookingDetail>() {
+                                    methods.PostBookingDetail("2021-02-02", "2021-02-02" ,"ec31e927-02b4-43d3-87d9-e3b9eeb69cbe", "E1-03").enqueue(new Callback<PostBookingDetail>() {
                                         @Override
                                         public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
                                             Log.v("status", response.body().getStatus().toString());
