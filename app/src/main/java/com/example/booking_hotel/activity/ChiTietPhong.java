@@ -36,8 +36,9 @@ TextView CT_Gia,address,Hotelname,Mota;
     private List<photo> mListPhoto;
     Button btn_datphong;
     public static Bitmap im;
-    private static String idroom;
+    public static String idroom1;
     Bitmap bitmap;
+
     QRGEncoder qrgEncoder;
 
     private static String img;
@@ -68,6 +69,8 @@ TextView CT_Gia,address,Hotelname,Mota;
         Hotelname=findViewById(R.id.CTP_title);
         Mota=findViewById(R.id.txt_mota);
         mListPhoto = getListPhoto();
+        Intent intent= getIntent();
+        ChiTietPhong.idroom1=intent.getStringExtra("idroom");
         photoViewpager2Adapter adapter = new photoViewpager2Adapter(mListPhoto);
         mViewPager2.setAdapter(adapter);
         mCircleIndicator3.setViewPager(mViewPager2);
@@ -161,6 +164,6 @@ btn_datphong.setOnClickListener(new View.OnClickListener() {
         Hotelname.setText(intent.getStringExtra("tenks"));
                 Mota.setText(intent.getStringExtra("mota"));
                 img=intent.getStringExtra("hinh");
-                ChiTietPhong.idroom=intent.getStringExtra("idroom");
+              //  ChiTietPhong.idroom1=intent.getStringExtra("idroom");
     }
 }
