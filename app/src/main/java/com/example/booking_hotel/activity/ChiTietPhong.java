@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.booking_hotel.Login;
 import com.example.booking_hotel.R;
 import com.example.booking_hotel.adapter.photoViewpager2Adapter;
 import com.example.booking_hotel.loadimg.photo;
@@ -101,7 +102,7 @@ btn_datphong.setOnClickListener(new View.OnClickListener() {
         String test ="hellooo";
         // setting this dimensions inside our qr code
         // encoder to generate our qr code.
-        qrgEncoder = new QRGEncoder("Tên Khách sạn"+Hotelname.getText().toString()+"\n"+"Địa chỉ"+CT_Gia.getText().toString()+"\n", null, QRGContents.Type.TEXT, dimen);
+        qrgEncoder = new QRGEncoder("Tên Khách sạn"+Hotelname.getText().toString()+"\n"+"Giá"+CT_Gia.getText().toString()+"\n"+"ID Room"+ChiTietPhong.idroom1+"\n"+"ID Khách hàng"+ Login.idCustomer+"\n"+"Tên Khách Hàng"+Login.NameCustomer, null, QRGContents.Type.TEXT, dimen);
         try {
             // getting our qrcode in the form of bitmap.
             bitmap = qrgEncoder.encodeAsBitmap();

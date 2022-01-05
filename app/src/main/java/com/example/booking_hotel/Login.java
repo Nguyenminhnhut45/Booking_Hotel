@@ -72,6 +72,7 @@ public static String idCustomer;
 public  static  String FacebookName;
     public  static  String ImgName;
     public  static  String FacebookID;
+    public  static  String NameCustomer;
     private Method method;
     private CustomerModel customerModel;
     @Override
@@ -341,6 +342,7 @@ public  static  String FacebookName;
                        @Override
                        public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
                            Login.idCustomer=response.body().getIdcustomer();
+                           Login.NameCustomer=response.body().getCustomerName();
                            Log.v("idCustomer", idCustomer);
 
                        }
