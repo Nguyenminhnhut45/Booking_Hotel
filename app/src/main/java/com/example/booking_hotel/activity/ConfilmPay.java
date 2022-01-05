@@ -18,6 +18,8 @@ import com.example.booking_hotel.R;
 import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Remote.ApiUtils;
 import com.example.lib.Data.Remote.Method;
+import com.example.lib.Data.ResultModel.PostBooking;
+import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -86,20 +88,29 @@ ImageView imageView;
                             Method methods = ApiUtils.getSOService();
                             BookingModel bookingModel= new BookingModel();
                             bookingModel.setIdcustomer("3f1f9d81-13fa-4dee-ad79-bd09b1fac178");
-                            methods.InsertBooking(bookingModel).enqueue(new Callback<BookingModel>() {
+                            methods.InsertBooking(bookingModel).enqueue(new Callback<PostBooking>() {
                                 @Override
-                                public void onResponse(Call<BookingModel> call, Response<BookingModel> response) {
-                                    Toast.makeText(getApplicationContext(), "Thành Công", Toast.LENGTH_SHORT).show();
+                                public void onResponse(Call<PostBooking> call, Response<PostBooking> response) {
 
+                                    Log.v("id", response.body().getId());
+                                    methods.PostBookingDetail("2021-02-02", "2021-02-02" ,"6e7fe57d-c905-42af-9a47-99393e47424a", "E1-03").enqueue(new Callback<PostBookingDetail>() {
+                                        @Override
+                                        public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
+                                            Log.v("status", response.body().getStatus().toString());
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<PostBookingDetail> call, Throwable t) {
+
+                                        }
+                                    });
                                 }
 
                                 @Override
-                                public void onFailure(Call<BookingModel> call, Throwable t) {
+                                public void onFailure(Call<PostBooking> call, Throwable t) {
 
                                 }
                             });
-
-
 
 
                         } else {

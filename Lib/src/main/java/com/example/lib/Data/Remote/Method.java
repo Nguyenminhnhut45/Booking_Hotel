@@ -5,6 +5,7 @@ import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
+import com.example.lib.Data.ResultModel.PostBooking;
 import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.example.lib.Data.ResultModel.PostCustomer;
 
@@ -25,7 +26,7 @@ public interface Method {
     Call<UserModelPost> InsertUser(@Body UserModelPost userModelPost);
 
     @POST("/api/Booking/insert-booking")
-    Call<BookingModel> InsertBooking(@Body BookingModel bookingModel);
+    Call<PostBooking> InsertBooking(@Body BookingModel bookingModel);
 
     @POST ("api/Customer/insert-customergoogle")
     Call<PostCustomer> InsertCustomer (@Body CustomerModel customerModel);
@@ -36,9 +37,10 @@ public interface Method {
     @GET ("api/Customer/get-iduser")
     Call<CustomerModel> GetCustomerByIdUser (@Query("id") String id);
 
-    @POST ("api/Booking/insert-bookingdetail/{dateStart}/{dateEnd}/{idRoom}/{idBooking}")
-    Call <PostBookingDetail> post(@Path("dateStart") String dateStart, @Path("dateEnd") String dateEnd, @Path("ỉdRoom") String idRoom
-    , @Path("idBooking") String idBooking);
+    @POST ("api/Booking/insert-bookingdetail")
+    Call <PostBookingDetail> PostBookingDetail(@Query("dateStart") String dateStart, @Query("dateEnd") String dateEnd, @Query("idBooking") String idBooking,
+    @Query("idroom") String idroom);
+
 
 
     @GET("api/Room")
