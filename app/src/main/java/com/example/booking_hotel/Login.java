@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.L;
+import com.example.booking_hotel.activity.QuenMatKhau;
 import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
@@ -92,6 +93,7 @@ public  static  String FacebookName;
         txt_matkhaudk = findViewById(R.id.txt_matkhaudk);
         txt_hotendk = findViewById(R.id.txt_hotendk);
         txt_emaildk = findViewById(R.id.txt_emaildk);
+        btn_quenmk = findViewById(R.id.btn_forgot_password);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -282,13 +284,13 @@ public  static  String FacebookName;
 //            }
 //        });
 //
-//        btn_quenmk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent intent = new Intent(Login.this, test_login.class);
-////                startActivity(intent);
-//            }
-//        });
+        btn_quenmk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, QuenMatKhau.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public static void printHashKey(Context pContext) {
