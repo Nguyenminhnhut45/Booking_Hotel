@@ -6,7 +6,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +31,19 @@ import com.example.booking_hotel.loadimg.photo;
 import com.example.lib.Data.Model.FeekBackModel;
 import com.example.lib.Data.Remote.ApiUtils;
 import com.example.lib.Data.Remote.Method;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.zxing.WriterException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -47,6 +61,9 @@ TextView CT_Gia,address,Hotelname,Mota;
     Button btn_datphong,btn_commnet;
     RatingBar ratingBar;
     String myrating;
+    private static final int SELECT_PICTURE = 1;
+    ImageView Img_Comment;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
     EditText txt_commnet;
     private static String idhotel;
     public static Bitmap im;
@@ -78,8 +95,11 @@ TextView CT_Gia,address,Hotelname,Mota;
         btn_datphong=findViewById(R.id.btn_datphong);
         mViewPager2 = findViewById(R.id.viewpager2);
         btn_commnet=findViewById(R.id.btn_comment);
+        Img_Comment=findViewById(R.id.Img_Comment);
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
         CT_Gia=findViewById(R.id.CTP_gia);
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://thanh-l-c.appspot.com");
+
         txt_commnet=findViewById(R.id.txt_Comment);
         address=findViewById(R.id.Txt_address);
         Hotelname=findViewById(R.id.CTP_title);
@@ -90,6 +110,16 @@ TextView CT_Gia,address,Hotelname,Mota;
         photoViewpager2Adapter adapter = new photoViewpager2Adapter(mListPhoto);
         mViewPager2.setAdapter(adapter);
         mCircleIndicator3.setViewPager(mViewPager2);
+        Img_Comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            /*    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, SELECT_PICTURE);*/
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , SELECT_PICTURE);
+            }
+        });
         ratingBar = findViewById(R.id.rating1);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -127,24 +157,67 @@ loaddataFromAdapter();
 btn_commnet.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Method methods = ApiUtils.getSOService();
-        FeekBackModel feekBackModel= new FeekBackModel();
-        int i= Integer.parseInt(myrating);
-        feekBackModel.setAssess(5);
-        feekBackModel.setComment(txt_commnet.getText().toString());
-        feekBackModel.setIdcustomer(Login.idCustomer);
-        feekBackModel.setIdhotel(idhotel);
-        methods.InsertFeedback(feekBackModel).enqueue(new Callback<FeekBackModel>() {
+        Calendar calendar = Calendar.getInstance();
+        StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
+
+        Img_Comment.setDrawingCacheEnabled(true);
+        Img_Comment.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) Img_Comment.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = mountainsRef.putBytes(data);
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
-            public void onResponse(Call<FeekBackModel> call, Response<FeekBackModel> response) {
-                Toast.makeText(ChiTietPhong.this,"THành công",Toast.LENGTH_SHORT).show();
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return mountainsRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Toast.makeText(getApplicationContext(), "Thành Công"+String.valueOf(downloadUri), Toast.LENGTH_SHORT).show();
+                    Log.d("AAAA",String.valueOf(downloadUri)+"");
+                    Method methods = ApiUtils.getSOService();
+                    FeekBackModel feekBackModel= new FeekBackModel();
+
+                    feekBackModel.setAssess(2);
+                   feekBackModel.setComment(txt_commnet.getText().toString());
+                    feekBackModel.setIdcustomer(Login.idCustomer);
+                    feekBackModel.setIdhotel(idhotel);
+                    feekBackModel.setImageComment(String.valueOf(downloadUri));
+                    methods.InsertFeedback(feekBackModel).enqueue(new Callback<FeekBackModel>() {
+                        @Override
+                        public void onResponse(Call<FeekBackModel> call, Response<FeekBackModel> response) {
+                            Toast.makeText(ChiTietPhong.this,"THành công",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<FeekBackModel> call, Throwable t) {
+                            Toast.makeText(ChiTietPhong.this,"fail",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    //    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+
+                } else {
+                    // Handle failures
+                    // ...
+                }
+
             }
 
-            @Override
-            public void onFailure(Call<FeekBackModel> call, Throwable t) {
 
-            }
         });
+
+
     }
 });
 btn_datphong.setOnClickListener(new View.OnClickListener() {
@@ -238,5 +311,21 @@ btn_datphong.setOnClickListener(new View.OnClickListener() {
                 img=intent.getStringExtra("hinh");
                 idhotel=intent.getStringExtra("idhotel");
               //  ChiTietPhong.idroom1=intent.getStringExtra("idroom");
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if(requestCode == SELECT_PICTURE && resultCode == RESULT_OK){
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream =getApplicationContext(). getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                Img_Comment.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+
+            }
+        }
     }
 }
