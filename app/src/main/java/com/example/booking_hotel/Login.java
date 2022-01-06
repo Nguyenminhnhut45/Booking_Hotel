@@ -490,11 +490,11 @@ public  static  String FacebookName;
                 customerModel.setIdgoogle(s.getId());
                 CreateCustomer(customerModel);
                 Intent intent= new Intent(Login.this, Home.class);
-                intent.putExtra("idCustomer", customerModel.getIdcustomer());
+                /*intent.putExtra("idCustomer", customerModel.getIdcustomer());
                 intent.putExtra("CustomerName", customerModel.getCustomerName());
                 intent.putExtra("avatar", customerModel.getAvatar());
                 intent.putExtra("Email", customerModel.getEmail());
-                intent.putExtra("Birthday", customerModel.getBrithday());
+                intent.putExtra("Birthday", customerModel.getBrithday());*/
 
                 startActivity(intent);
             }
