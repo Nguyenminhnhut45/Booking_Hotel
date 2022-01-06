@@ -21,6 +21,9 @@
             android:name=".activity.ConfilmPay"
             android:exported="false" />
         <activity
+            android:name=".activity.QuenMatKhau"
+            android:exported="false" />
+        <activity
             android:name=".activity.Activity_Xephang"
             android:exported="false" />
         <activity
