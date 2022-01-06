@@ -23,6 +23,9 @@
             android:launchMode="singleTask"/>
 
         <activity
+            android:name=".activity.QuenMatKhau"
+            android:exported="false" />
+        <activity
             android:name=".activity.Activity_Xephang"
             android:exported="false" />
         <activity
