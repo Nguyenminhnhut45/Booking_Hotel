@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relative_item_rating"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="7dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/Ratingimg"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/profile_img"
+               />
+
+            <TextView
+                android:id="@+id/rating_id1"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <RatingBar
+                android:id="@+id/rating1"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_detail_full_name"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/product_detail_profile_img"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="2.5"
+                android:stepSize="0.5"
+                android:theme="@style/RatingBar" />
+            <TextView
+                android:id="@+id/rating_star1"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comment text wil display here... "
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/comments_border"
+                android:padding="10dp"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

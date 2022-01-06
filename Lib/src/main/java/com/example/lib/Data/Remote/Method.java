@@ -2,6 +2,7 @@ package com.example.lib.Data.Remote;
 
 import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Model.CustomerModel;
+import com.example.lib.Data.Model.FeekBackModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
@@ -27,6 +28,8 @@ public interface Method {
 
     @POST("/api/Booking/insert-booking")
     Call<PostBooking> InsertBooking(@Body BookingModel bookingModel);
+    @POST("/api/FeedBack")
+    Call<FeekBackModel> InsertFeedback(@Body FeekBackModel feekBackModel);
 
     @POST ("api/Customer/insert-customergoogle")
     Call<PostCustomer> InsertCustomer (@Body CustomerModel customerModel);

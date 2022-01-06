@@ -15,12 +15,18 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.booking_hotel.Login;
 import com.example.booking_hotel.R;
 import com.example.booking_hotel.adapter.photoViewpager2Adapter;
 import com.example.booking_hotel.loadimg.photo;
+import com.example.lib.Data.Model.FeekBackModel;
+import com.example.lib.Data.Remote.ApiUtils;
+import com.example.lib.Data.Remote.Method;
 import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
@@ -29,13 +35,20 @@ import java.util.List;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import me.relex.circleindicator.CircleIndicator3;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChiTietPhong extends AppCompatActivity {
 TextView CT_Gia,address,Hotelname,Mota;
     private ViewPager2 mViewPager2;
     private CircleIndicator3 mCircleIndicator3;
     private List<photo> mListPhoto;
-    Button btn_datphong;
+    Button btn_datphong,btn_commnet;
+    RatingBar ratingBar;
+    String myrating;
+    EditText txt_commnet;
+    private static String idhotel;
     public static Bitmap im;
     public static String idroom1;
     Bitmap bitmap;
@@ -64,8 +77,10 @@ TextView CT_Gia,address,Hotelname,Mota;
         setContentView(R.layout.activity_chi_tiet_phong);
         btn_datphong=findViewById(R.id.btn_datphong);
         mViewPager2 = findViewById(R.id.viewpager2);
+        btn_commnet=findViewById(R.id.btn_comment);
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
         CT_Gia=findViewById(R.id.CTP_gia);
+        txt_commnet=findViewById(R.id.txt_Comment);
         address=findViewById(R.id.Txt_address);
         Hotelname=findViewById(R.id.CTP_title);
         Mota=findViewById(R.id.txt_mota);
@@ -75,7 +90,63 @@ TextView CT_Gia,address,Hotelname,Mota;
         photoViewpager2Adapter adapter = new photoViewpager2Adapter(mListPhoto);
         mViewPager2.setAdapter(adapter);
         mCircleIndicator3.setViewPager(mViewPager2);
+        ratingBar = findViewById(R.id.rating1);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                int rating = (int) v;
+                String message = null;
+               myrating= String.valueOf(ratingBar.getRating());
+
+
+              //  myrating = Integer.parseInt(y);
+                switch (rating) {
+                    case 0:
+                        message="không sao";
+                        break;
+                    case 1:
+                        message = "Quá tệ";
+                        break;
+                    case 2:
+                        message = "Hổ trợ không quá tệ";
+                        break;
+                    case 3:
+                        message = "Đủ tốt";
+                        break;
+                    case 4:
+                        message = "Rất tốt";
+                        break;
+                    case 5:
+                        message = "Trên cả tuyệt vời";
+                        break;
+                }
+                Toast.makeText(ChiTietPhong.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
 loaddataFromAdapter();
+btn_commnet.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Method methods = ApiUtils.getSOService();
+        FeekBackModel feekBackModel= new FeekBackModel();
+        int i= Integer.parseInt(myrating);
+        feekBackModel.setAssess(5);
+        feekBackModel.setComment(txt_commnet.getText().toString());
+        feekBackModel.setIdcustomer(Login.idCustomer);
+        feekBackModel.setIdhotel(idhotel);
+        methods.InsertFeedback(feekBackModel).enqueue(new Callback<FeekBackModel>() {
+            @Override
+            public void onResponse(Call<FeekBackModel> call, Response<FeekBackModel> response) {
+                Toast.makeText(ChiTietPhong.this,"THành công",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<FeekBackModel> call, Throwable t) {
+
+            }
+        });
+    }
+});
 btn_datphong.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -102,7 +173,7 @@ btn_datphong.setOnClickListener(new View.OnClickListener() {
         String test ="hellooo";
         // setting this dimensions inside our qr code
         // encoder to generate our qr code.
-        qrgEncoder = new QRGEncoder("Tên Khách sạn"+Hotelname.getText().toString()+"\n"+"Giá"+CT_Gia.getText().toString()+"\n"+"ID Room"+ChiTietPhong.idroom1+"\n"+"ID Khách hàng"+ Login.idCustomer+"\n"+"Tên Khách Hàng"+Login.NameCustomer, null, QRGContents.Type.TEXT, dimen);
+        qrgEncoder = new QRGEncoder("Tên Khách sạn"+Hotelname.getText().toString()+"\n"+"Giá"+CT_Gia.getText().toString()+"\n"+"ID Room"+ChiTietPhong.idroom1+"\n"+"Tên Khách Hàng"+Login.NameCustomer, null, QRGContents.Type.TEXT, dimen);
         try {
             // getting our qrcode in the form of bitmap.
             bitmap = qrgEncoder.encodeAsBitmap();
@@ -165,6 +236,7 @@ btn_datphong.setOnClickListener(new View.OnClickListener() {
         Hotelname.setText(intent.getStringExtra("tenks"));
                 Mota.setText(intent.getStringExtra("mota"));
                 img=intent.getStringExtra("hinh");
+                idhotel=intent.getStringExtra("idhotel");
               //  ChiTietPhong.idroom1=intent.getStringExtra("idroom");
     }
 }

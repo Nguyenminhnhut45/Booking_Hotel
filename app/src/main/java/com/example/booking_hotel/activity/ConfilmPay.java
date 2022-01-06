@@ -95,78 +95,78 @@ ImageView imageView;
                             }
 
                         });
-                        Calendar calendar = Calendar.getInstance();
-                        StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
-
-                        imageView.setDrawingCacheEnabled(true);
-                        imageView.buildDrawingCache();
-                        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        byte[] data = baos.toByteArray();
-
-                        UploadTask uploadTask = mountainsRef.putBytes(data);
-                        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                            @Override
-                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                if (!task.isSuccessful()) {
-                                    throw task.getException();
-                                }
-
-                                // Continue with the task to get the download URL
-                                return mountainsRef.getDownloadUrl();
-                            }
-                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.isSuccessful()) {
-                                    Uri downloadUri = task.getResult();
-                                    Toast.makeText(getApplicationContext(), "Thành Công"+String.valueOf(downloadUri), Toast.LENGTH_SHORT).show();
-                                    Log.d("AAAA",String.valueOf(downloadUri)+"");
-
-                                    //    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-
-                                    Method methods = ApiUtils.getSOService();
-                                    BookingModel bookingModel= new BookingModel();
-                                    bookingModel.setIdcustomer(Login.idCustomer);
-                                    bookingModel.setIqr(String.valueOf(downloadUri));
-                                    methods.InsertBooking(bookingModel).enqueue(new Callback<PostBooking>() {
-                                        @Override
-                                        public void onResponse(Call<PostBooking> call, Response<PostBooking> response) {
-
-                                            Log.v("id", response.body().getId());
-                                            methods.PostBookingDetail("2021-02-02", "2021-02-02" , response.body().getId(), ChiTietPhong.idroom1).enqueue(new Callback<PostBookingDetail>() {
-                                                @Override
-                                                public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
-                                                    Log.v("status", response.body().getStatus().toString());
-                                                    Intent intent = new Intent(ConfilmPay.this, Home.class);
-                                                    startActivity(intent);
-                                                }
-
-                                                @Override
-                                                public void onFailure(Call<PostBookingDetail> call, Throwable t) {
-
-                                                }
-                                            });
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<PostBooking> call, Throwable t) {
-
-                                        }
-                                    });
-
-
-                                } else {
-                                    // Handle failures
-                                    // ...
-                                }
-
-                            }
-
-
-                        });
                     }
+                    Calendar calendar = Calendar.getInstance();
+                    StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
+
+                    imageView.setDrawingCacheEnabled(true);
+                    imageView.buildDrawingCache();
+                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                    byte[] data = baos.toByteArray();
+
+                    UploadTask uploadTask = mountainsRef.putBytes(data);
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+
+                            // Continue with the task to get the download URL
+                            return mountainsRef.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                               // Toast.makeText(getApplicationContext(), "Thành Công"+String.valueOf(downloadUri), Toast.LENGTH_SHORT).show();
+                                Log.d("AAAA",String.valueOf(downloadUri)+"");
+
+                                //    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+
+                                Method methods = ApiUtils.getSOService();
+                                BookingModel bookingModel= new BookingModel();
+                                bookingModel.setIdcustomer(Login.idCustomer);
+                                bookingModel.setIqr(String.valueOf(downloadUri));
+                                methods.InsertBooking(bookingModel).enqueue(new Callback<PostBooking>() {
+                                    @Override
+                                    public void onResponse(Call<PostBooking> call, Response<PostBooking> response) {
+
+                                        Log.v("id", response.body().getId());
+                                        methods.PostBookingDetail("2021-02-02", "2021-02-02" , response.body().getId(), ChiTietPhong.idroom1).enqueue(new Callback<PostBookingDetail>() {
+                                            @Override
+                                            public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
+                                                Log.v("status", response.body().getStatus().toString());
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<PostBookingDetail> call, Throwable t) {
+
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<PostBooking> call, Throwable t) {
+
+                                    }
+                                });
+
+
+                            } else {
+                                // Handle failures
+                                // ...
+                            }
+
+                        }
+
+
+                    });
+
 
 
                 } catch (Exception e) {

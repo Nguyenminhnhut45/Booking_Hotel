@@ -48,6 +48,8 @@ RoomAdapter adapter;
         method.getRoom().enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
+
+
                 list = (ArrayList<Room>) response.body();
                 adapter.addAll(list);
                 listView.setAdapter(adapter);
