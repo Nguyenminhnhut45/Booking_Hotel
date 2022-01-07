@@ -203,6 +203,7 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
                                 <ListView
+
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:scrollbarAlwaysDrawHorizontalTrack="true"/>
@@ -285,54 +286,6 @@
                                android:layout_height="wrap_content"/>
 
                         </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Đăng Lê: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Tiến Anh: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Thuận Trần: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Nhựt: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -340,38 +293,22 @@
                             android:orientation="horizontal"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp">
-                            <TextView
+
+                            <ListView
+                                android:id="@+id/lv_feed_back"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Nhựt: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
+                                android:layout_height="wrap_content" />
+
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Nhựt: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="16sp"
-                                android:text="Nhựt: Ban công đẹp, đầu tuần ở đây thoải mái. Yên tĩnh gần nhiều quán ngon"/>
-                        </LinearLayout>
+
+
+
+
+
+
+
                     </LinearLayout>
 
                 </LinearLayout>

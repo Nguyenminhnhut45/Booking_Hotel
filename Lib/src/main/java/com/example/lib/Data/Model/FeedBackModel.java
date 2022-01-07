@@ -4,8 +4,7 @@ package com.example.lib.Data.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
-public class FeekBackModel {
+public class FeedBackModel {
 
     @SerializedName("idhotel")
     @Expose
@@ -22,6 +21,12 @@ public class FeekBackModel {
     @SerializedName("imageComment")
     @Expose
     private String imageComment;
+    @SerializedName("idcustomerNavigation")
+    @Expose
+    private CustomerModel idcustomerNavigation;
+    @SerializedName("idhotelNavigation")
+    @Expose
+    private Hotel idhotelNavigation;
 
     public String getIdhotel() {
         return idhotel;
@@ -61,6 +66,22 @@ public class FeekBackModel {
 
     public void setImageComment(String imageComment) {
         this.imageComment = imageComment;
+    }
+
+    public CustomerModel getIdcustomerNavigation() {
+        return idcustomerNavigation;
+    }
+
+    public void setIdcustomerNavigation(CustomerModel idcustomerNavigation) {
+        this.idcustomerNavigation = idcustomerNavigation;
+    }
+
+    public Hotel getIdhotelNavigation() {
+        return idhotelNavigation;
+    }
+
+    public void setIdhotelNavigation(Hotel idhotelNavigation) {
+        this.idhotelNavigation = idhotelNavigation;
     }
 
 }
