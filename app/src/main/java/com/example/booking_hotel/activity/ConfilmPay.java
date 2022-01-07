@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,7 +14,9 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.booking_hotel.Home;
@@ -52,10 +55,81 @@ ImageView imageView;
     String amount = "1000";
     AppCompatButton btn_THanhToan;
     FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    TextView date_start,date_end;
+    DatePickerDialog.OnDateSetListener setListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confilm_pay);
+
+
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        date_start = findViewById(R.id.date_start);
+        date_end = findViewById(R.id.date_end);
+
+        date_start.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ConfilmPay.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        String ngay = "";
+                        String thang = "";
+                        if (day < 10) {
+                            ngay = "0" + day;
+                        } else {
+                            ngay = String.valueOf(day);
+                        }
+                        if (month < 10) {
+                            thang = "0" + (month + 1);
+                        } else {
+                            thang = String.valueOf(month + 1);
+                        }
+                        String date = ngay + "/" + thang + "/" + year;
+
+                        date_start.setText(date);
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+        date_end.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ConfilmPay.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        String ngay = "";
+                        String thang = "";
+                        if (day < 10) {
+                            ngay = "0" + day;
+                        } else {
+                            ngay = String.valueOf(day);
+                        }
+                        if (month < 10) {
+                            thang = "0" + (month + 1);
+                        } else {
+                            thang = String.valueOf(month + 1);
+                        }
+                        String date_end1 = ngay + "/" + thang + "/" + year;
+
+                        date_start.setText(date_end1);
+
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
         imageView=findViewById(R.id.IMGSP);
         btn_THanhToan=findViewById(R.id.post_liquidation_btn);
         imageView.setImageBitmap(ChiTietPhong.im);
