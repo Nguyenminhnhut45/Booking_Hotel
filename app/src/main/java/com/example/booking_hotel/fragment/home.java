@@ -17,6 +17,8 @@ import com.example.booking_hotel.MainActivity;
 import com.example.booking_hotel.R;
 import com.example.booking_hotel.adapter.AdapterHome.Rcv_noibatAdapter;
 import com.example.booking_hotel.adapter.AdapterHome.Rcv_noibatModel;
+import com.example.booking_hotel.adapter.Recyclerview_Search;
+import com.example.booking_hotel.adapter.Recyclerview_noibat;
 import com.example.booking_hotel.adapter.RoomAdapter;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Remote.ApiUtils;
@@ -37,7 +39,7 @@ public class home extends Fragment {
 
     RecyclerView rcv_noibat,rcv_diadiemdep,rvc_danhmuc;
     RecyclerView.Adapter rcv_adapter;
-
+Recyclerview_noibat recyclerview_noibat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,26 +55,27 @@ public class home extends Fragment {
 //        adapter = new RoomAdapter(getContext(), R.layout.item_home_noibat);
 //        getRoom();
 
-        load_rcv_noibat();
+       // load_rcv_noibat();
         load_rcv_diadiemdep();
         load_rcv_danhmuc();
+        getRoom();
         return view;
     }
 
-    public void load_rcv_noibat(){
-        rcv_noibat.setHasFixedSize(true);
-        rcv_noibat.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        ArrayList<Rcv_noibatModel> rcv_noibatLocation = new ArrayList<>();
-
-        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay3,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
-        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay2,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
-        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay4,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
-        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay5,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
-
-        rcv_adapter = new Rcv_noibatAdapter(rcv_noibatLocation);
-        rcv_noibat.setAdapter(rcv_adapter);
-    }
+//    public void load_rcv_noibat(){
+//        rcv_noibat.setHasFixedSize(true);
+//        rcv_noibat.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//
+//        ArrayList<Rcv_noibatModel> rcv_noibatLocation = new ArrayList<>();
+//
+//        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay3,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
+//        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay2,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
+//        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay4,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
+//        rcv_noibatLocation.add(new Rcv_noibatModel(R.drawable.viewhomestay5,"Đà Lạt", "Địa điểm đẹp thích hợp cho các cặp đôi"));
+//
+//        rcv_adapter = new Rcv_noibatAdapter(rcv_noibatLocation);
+//        rcv_noibat.setAdapter(rcv_adapter);
+//    }
 
     public void load_rcv_diadiemdep(){
         rcv_diadiemdep.setHasFixedSize(true);
@@ -135,5 +138,25 @@ public class home extends Fragment {
 
 //    }
 
+    private void getRoom () {
+        Method method = ApiUtils.getSOService();
+        list = new ArrayList<>();
+        method.getRoom().enqueue(new Callback<List<Room>>() {
+            @Override
+            public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
+                list = (ArrayList<Room>) response.body();
+                rcv_noibat .setHasFixedSize(true);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                recyclerview_noibat = new Recyclerview_noibat(getContext(), list);
+                rcv_noibat.setLayoutManager(layoutManager);
 
+                rcv_noibat.setAdapter(recyclerview_noibat);
+            }
+
+            @Override
+            public void onFailure(Call<List<Room>> call, Throwable t) {
+
+            }
+        });
+    }
 }
