@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
 
-                android:text="Thanh lý ngay nào "
+                android:text="Tìm khách sạn ngay nào "
                 android:textSize="24sp" />
 
             <RelativeLayout

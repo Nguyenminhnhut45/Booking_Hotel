@@ -10,11 +10,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,17 +46,17 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-//import vn.zalopay.sdk.Environment;
-//import vn.zalopay.sdk.ZaloPayError;
-//import vn.zalopay.sdk.ZaloPaySDK;
-//import vn.zalopay.sdk.listeners.PayOrderListener;
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPayError;
+import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class ConfilmPay extends AppCompatActivity {
 ImageView imageView;
     String amount = "1000";
     AppCompatButton btn_THanhToan;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-
+EditText post_liquidation_name,Giasp1,post_liquidation_desc;
     TextView date_start,date_end;
     DatePickerDialog.OnDateSetListener setListener;
     @Override
@@ -68,9 +69,14 @@ ImageView imageView;
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
-
+        post_liquidation_name=findViewById(R.id.post_liquidation_name);
+        post_liquidation_name.setText(ChiTietPhong.namehotel);
         date_start = findViewById(R.id.date_start);
+        post_liquidation_desc=findViewById(R.id.post_liquidation_desc);
+        post_liquidation_desc.setText(ChiTietPhong.mota);
         date_end = findViewById(R.id.date_end);
+        Giasp1=findViewById(R.id.Giasp1);
+        Giasp1.setText(ChiTietPhong.giahotel);
 
         date_start.setOnClickListener(new View.OnClickListener() {
 
@@ -122,7 +128,7 @@ ImageView imageView;
                         }
                         String date_end1 = ngay + "/" + thang + "/" + year;
 
-                        date_start.setText(date_end1);
+                        date_end.setText(date_end1);
 
                     }
                 }, year, month, day);
@@ -139,7 +145,7 @@ ImageView imageView;
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-//        ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
+        ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
         btn_THanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,23 +158,23 @@ ImageView imageView;
                     if (code.equals("1")) {
 
                         String token = data1.getString("zptranstoken");
-//                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
-//                            @Override
-//                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                        });
+                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
+                            @Override
+                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
+                            }
+
+                        });
                         Calendar calendar = Calendar.getInstance();
                         StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
 
@@ -209,7 +215,7 @@ ImageView imageView;
                                         public void onResponse(Call<PostBooking> call, Response<PostBooking> response) {
 
                                             Log.v("id", response.body().getId());
-                                            methods.PostBookingDetail("2021-02-02", "2021-02-02" , response.body().getId(), ChiTietPhong.idroom1).enqueue(new Callback<PostBookingDetail>() {
+                                            methods.PostBookingDetail(date_start.getText().toString(), date_end.getText().toString(), response.body().getId(), ChiTietPhong.idroom1).enqueue(new Callback<PostBookingDetail>() {
                                                 @Override
                                                 public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
                                                     Log.v("status", response.body().getStatus().toString());
@@ -254,6 +260,6 @@ ImageView imageView;
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-       // ZaloPaySDK.getInstance().onResult(intent);
+       ZaloPaySDK.getInstance().onResult(intent);
     }
 }

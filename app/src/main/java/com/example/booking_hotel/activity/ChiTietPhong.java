@@ -78,6 +78,7 @@ public class ChiTietPhong extends AppCompatActivity {
    Method method;
    public static  String namehotel;
    public static String giahotel;
+    public static String mota;
     Bitmap bitmap;
 
     QRGEncoder qrgEncoder;
@@ -121,7 +122,7 @@ public class ChiTietPhong extends AppCompatActivity {
         ChiTietPhong.idroom1 = intent.getStringExtra("idroom");
 
         photoViewpager2Adapter adapter = new photoViewpager2Adapter(mListPhoto);
-
+        LoadFeedBack("KS1");
         // new adapter.....
         mViewPager2.setAdapter(adapter);
         mCircleIndicator3.setViewPager(mViewPager2);
@@ -327,10 +328,11 @@ public class ChiTietPhong extends AppCompatActivity {
         Mota.setText(intent.getStringExtra("mota"));
         img = intent.getStringExtra("hinh");
         idhotel = intent.getStringExtra("idhotel");
-          ChiTietPhong.idroom1=intent.getStringExtra("idroom");
+        //  ChiTietPhong.idroom1=intent.getStringExtra("idroom");
             ChiTietPhong.namehotel=intent.getStringExtra("tenks");
             ChiTietPhong.giahotel=intent.getStringExtra("gia");
-        LoadFeedBack("KS1");
+            ChiTietPhong.mota=intent.getStringExtra("mota");
+
 
 
 
