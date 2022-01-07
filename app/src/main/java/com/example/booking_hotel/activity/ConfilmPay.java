@@ -9,10 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -42,15 +43,16 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-//import vn.zalopay.sdk.Environment;
-//import vn.zalopay.sdk.ZaloPayError;
-//import vn.zalopay.sdk.ZaloPaySDK;
-//import vn.zalopay.sdk.listeners.PayOrderListener;
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPayError;
+import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class ConfilmPay extends AppCompatActivity {
 ImageView imageView;
     String amount = "1000";
     AppCompatButton btn_THanhToan;
+    EditText post_liquidation_name,Giasp1;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +61,16 @@ ImageView imageView;
         imageView=findViewById(R.id.IMGSP);
         btn_THanhToan=findViewById(R.id.post_liquidation_btn);
         imageView.setImageBitmap(ChiTietPhong.im);
+        Giasp1=findViewById(R.id.Giasp1);
+        Giasp1.setText(ChiTietPhong.giahotel);
         StorageReference storageRef = storage.getReferenceFromUrl("gs://thanh-l-c.appspot.com");
-
+        post_liquidation_name=findViewById(R.id.post_liquidation_name);
+        post_liquidation_name.setText(ChiTietPhong.namehotel);
         StrictMode.ThreadPolicy policy = new
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-//        ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
+       ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
         btn_THanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,23 +83,23 @@ ImageView imageView;
                     if (code.equals("1")) {
 
                         String token = data1.getString("zptranstoken");
-//                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
-//                            @Override
-//                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                        });
+                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
+                            @Override
+                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
+                            }
+
+                        });
                         Calendar calendar = Calendar.getInstance();
                         StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
 
@@ -140,7 +145,7 @@ ImageView imageView;
                                                 public void onResponse(Call<PostBookingDetail> call, Response<PostBookingDetail> response) {
                                                     Log.v("status", response.body().getStatus().toString());
                                                     Intent intent = new Intent(ConfilmPay.this, Home.class);
-                                                    startActivity(intent);
+                                                    //startActivity(intent);
                                                 }
 
                                                 @Override
