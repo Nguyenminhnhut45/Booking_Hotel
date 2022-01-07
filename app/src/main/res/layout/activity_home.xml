@@ -24,23 +24,40 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_day">
 
             <ImageView
                 android:id="@+id/menu_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/menu"
+                android:background="@color/White_GhostWhite"
                 android:layout_marginLeft="15dp"
-                android:layout_centerVertical="true"/>
+                android:layout_marginTop="10dp"/>
+            <FrameLayout
+                android:id="@+id/continer"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="50dp"/>
 
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/nav_menu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-60dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_menu"
+                app:itemIconTint="@color/icon_color"
+                app:itemRippleColor="@color/black"
+                app:itemTextColor="@color/Black"
+                app:menu="@menu/navigation_bottom"></com.google.android.material.bottomnavigation.BottomNavigationView>
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/continer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"/>
+
 
 
 

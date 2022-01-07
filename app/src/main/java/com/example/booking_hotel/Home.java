@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.booking_hotel.fragment.Account;
+import com.example.booking_hotel.fragment.BookingHotel;
 import com.example.booking_hotel.fragment.button_2;
 import com.example.booking_hotel.fragment.home;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -99,12 +100,43 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         loadFragment(fragment);
                         onBackPressed();
                         return true;
+
+                    case R.id.menu1_Logout:
+                        finish();
+                        return true;
                 }
                 return false;
             }
         });
 
         animateNavigationDrawer();
+
+
+        bottomNavigationView = findViewById(R.id.nav_menu);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                home home = new home();
+                switch (item.getItemId()){
+                    case R.id.menu_home:
+                        loadFragment(home);
+                        return true;
+
+                    case R.id.menu_timkiem:
+                        fragment = new button_2();
+                        loadFragment(fragment);
+                        return true;
+
+                    case R.id.menu_lichsubooking:
+                        fragment = new BookingHotel();
+                        loadFragment(fragment);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

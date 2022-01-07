@@ -290,18 +290,14 @@
 
                         </LinearLayout>
 
-
-
-
-
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-
     </ScrollView>
+
     <LinearLayout
         android:layout_marginTop="-50dp"
         android:layout_width="match_parent"

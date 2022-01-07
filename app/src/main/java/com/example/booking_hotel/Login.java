@@ -1,5 +1,8 @@
 package com.example.booking_hotel;
 
+import static com.example.booking_hotel.R.color.Gold;
+import static com.example.booking_hotel.R.color.Red_Crimson;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;

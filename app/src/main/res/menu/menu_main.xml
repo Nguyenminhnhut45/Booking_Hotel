@@ -8,23 +8,20 @@
         <item
             android:id="@+id/menu1_Search"
             android:title="Tìm kiếm"
-            android:icon="@drawable/ic_home"/>
-        <item
-            android:id="@+id/menu1_Follow"
-            android:title="Yêu thích"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@drawable/ic_search"/>
+
         <item
             android:id="@+id/menu1_Profile"
             android:title="Thông tin"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@drawable/ic_profile"/>
         <item
             android:id="@+id/menu1_Setting"
             android:title="Cài đặt"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@drawable/ic_settings"/>
         <item
             android:id="@+id/menu1_Logout"
             android:title="Đăng xuất"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@drawable/ic_logout"/>
 
     </group>
 </menu>

@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-
-
     <View
         android:id="@+id/bg_night"
         android:layout_width="match_parent"
@@ -28,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="25dp"
+        android:layout_marginTop="70dp"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="0dp"
         app:cardUseCompatPadding="true"
@@ -215,7 +214,6 @@
                     android:hint="Mật khẩu"
                     app:boxStrokeColor="@color/white"
                     app:boxStrokeWidth="1dp"
-                    app:endIconMode="password_toggle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -305,48 +303,35 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16sp"
+                android:layout_marginTop="10sp"
                 android:layout_marginBottom="16sp"
                 android:text="OR"
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
 
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_button"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/google"
-                android:layout_gravity="center_horizontal"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="10dp" />
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                     />
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="10dp" />
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"/>
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_margin="10dp" />
             </LinearLayout>
         </LinearLayout>
 
