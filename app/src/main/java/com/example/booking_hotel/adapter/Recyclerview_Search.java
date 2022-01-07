@@ -61,6 +61,7 @@ public class Recyclerview_Search extends RecyclerView.Adapter<Recyclerview_Searc
                 intent.putExtra("diachi",filterList.get(position).getIdHotelNavigation().getAddress());
                 intent.putExtra("hinh",filterList.get(position).getImage());
                 intent.putExtra("idroom",filterList.get(position).getIdroom());
+                intent.putExtra("idhotel",filterList.get(position).getIdHotelNavigation().getIdhotel());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcontext.startActivity(intent);
             }

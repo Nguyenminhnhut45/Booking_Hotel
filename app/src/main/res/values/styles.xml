@@ -3,5 +3,11 @@
     <style name="navigationTheme">
         <item name="colorPrimary">@color/Gold</item>
         <item name="colorControlHighlight">@color/Black</item>
+
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/Gray</item>
+        <item name="colorControlActivated">#A89C2B</item>
+    </style>
+
 </resources>

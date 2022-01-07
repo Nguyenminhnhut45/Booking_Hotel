@@ -2,9 +2,12 @@ package com.example.lib.Data.Remote;
 
 import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Model.CustomerModel;
+import com.example.lib.Data.Model.FeedBackModel;
+import com.example.lib.Data.Model.PostFeedBackModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
+import com.example.lib.Data.ResultModel.GetFeedBackByHotel;
 import com.example.lib.Data.ResultModel.PostBooking;
 import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.example.lib.Data.ResultModel.PostCustomer;
@@ -27,6 +30,8 @@ public interface Method {
 
     @POST("/api/Booking/insert-booking")
     Call<PostBooking> InsertBooking(@Body BookingModel bookingModel);
+    @POST("/api/FeedBack")
+    Call<PostFeedBackModel> InsertFeedback(@Body PostFeedBackModel feekBackModel);
 
     @POST ("api/Customer/insert-customergoogle")
     Call<PostCustomer> InsertCustomer (@Body CustomerModel customerModel);
@@ -41,7 +46,11 @@ public interface Method {
     Call <PostBookingDetail> PostBookingDetail(@Query("dateStart") String dateStart, @Query("dateEnd") String dateEnd, @Query("idBooking") String idBooking,
     @Query("idroom") String idroom);
 
+    @GET ("api/FeedBack/get-sumAssess")
+    Call <GetFeedBackByHotel> GetFeedBackByHotel(@Query("idHotel") String idHotel);
 
+    @GET ("api/FeedBack/get-hotel")
+    Call <List<FeedBackModel>> GetFeedBack(@Query("idHotel") String idHotel);
 
     @GET("api/Room")
     Call<List<Room>> getRoom();
