@@ -1,8 +1,13 @@
 package com.example.lib.Data.Remote;
 
+import androidx.constraintlayout.widget.Guideline;
+
+import com.example.lib.Data.Model.BookingDetailModel;
 import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.FeedBackModel;
+import com.example.lib.Data.Model.HistoryBooking;
+import com.example.lib.Data.Model.Hotel;
 import com.example.lib.Data.Model.PostFeedBackModel;
 import com.example.lib.Data.Model.Room;
 import com.example.lib.Data.Model.StatusModel;
@@ -54,5 +59,17 @@ public interface Method {
 
     @GET("api/Room")
     Call<List<Room>> getRoom();
+
+    /*@GET("api/Booking/get-customer")
+    Call<HistoryBooking> GetHistoryBooking(@Query("idCustomer") String idCustomer);*/
+
+    @GET("api/Booking/get-customer")
+    Call<List<BookingModel>> GetHistoryBooking(@Query("idCustomer") String idCustomer);
+
+    @GET("/api/BookingDetail/get-idbooking")
+    Call<BookingDetailModel> GetBookingDetail(@Query("idBooking") String idBooking);
+
+    @GET("api/Hotel/{idHotel}")
+    Call<Hotel> getHotel (@Path("idHotel") String idHotel);
 
 }
