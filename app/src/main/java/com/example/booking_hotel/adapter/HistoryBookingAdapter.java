@@ -84,7 +84,7 @@ public class HistoryBookingAdapter extends ArrayAdapter<BookingModel> {
                 }
                 txt_maphong.setText("Mã phòng: "+ response.body().getIdroom());
 
-                    method.getHotel(response.body().getIdroomNavigation().getIdHotel()).enqueue(new Callback<Hotel>() {
+                method.getHotel(response.body().getIdroomNavigation().getIdHotel()).enqueue(new Callback<Hotel>() {
                     @Override
                     public void onResponse(Call<Hotel> call, Response<Hotel> response) {
                         txt_hotelName.setText(response.body().getHotelName());
