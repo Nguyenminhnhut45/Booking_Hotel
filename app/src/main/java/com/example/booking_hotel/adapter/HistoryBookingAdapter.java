@@ -98,6 +98,7 @@ public class HistoryBookingAdapter extends ArrayAdapter<BookingModel> {
                 });
             }
 
+
             @Override
             public void onFailure(Call<BookingDetailModel> call, Throwable t) {
 
