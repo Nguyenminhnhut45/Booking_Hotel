@@ -90,18 +90,11 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            />
+                            android:layout_centerInParent="true" />
 
                     </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Công nghệ"
-                        android:id="@+id/qlsp"
-                        android:textAlignment="center" />
+
 
                 </LinearLayout>
 
@@ -120,17 +113,11 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            />
+                            android:layout_centerInParent="true" />
 
                     </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Đấu giá"
-                        android:textAlignment="center" />
+
 
                 </LinearLayout>
 
@@ -149,17 +136,9 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            />
+                            android:layout_centerInParent="true" />
 
                     </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Quần áo"
-                        android:textAlignment="center" />
 
                 </LinearLayout>
 
@@ -178,17 +157,11 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_centerInParent="true"
-                            />
+                            android:layout_centerInParent="true" />
 
                     </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:text="Gần đây"
-                        android:textAlignment="center" />
+
 
                 </LinearLayout>
 

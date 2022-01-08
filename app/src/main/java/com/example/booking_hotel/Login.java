@@ -29,6 +29,7 @@ import com.example.lib.Data.Model.UserModelPost;
 import com.example.lib.Data.Remote.ApiUtils;
 import com.example.lib.Data.Remote.Method;
 import com.example.lib.Data.ResultModel.PostCustomer;
+import com.example.lib.Data.ResultModel.PostUserModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -66,19 +67,20 @@ public class Login extends Activity {
     ImageView sun, dayland, nightland, moon;
     View daysky, nightsky;
     DayNightSwitch dayNightSwitch;
-public static String idCustomer;
+    public static String idCustomer;
     TextView btn_login, btn_dangky, btn_quenmk;
     TextInputEditText txt_taikhoan, txt_matkhau, txt_taikhoandk, txt_matkhaudk, txt_hotendk, txt_emaildk;
     Button btn_login1;
     LinearLayout formlogin, formlogup;
     TextView dangnhap, dangky;
     GoogleSignInClient mGoogleSignInClient;
-public  static  String FacebookName;
-    public  static  String ImgName;
-    public  static  String FacebookID;
-    public  static  String NameCustomer;
+    public static String FacebookName;
+    public static String ImgName;
+    public static String FacebookID;
+    public static String NameCustomer;
     private Method method;
     private CustomerModel customerModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,10 +159,10 @@ public  static  String FacebookName;
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         Intent intent = new Intent(Login.this, Home.class);
-                       Login.FacebookName =profile.getName();
-                       Login.FacebookID=loginResult.getAccessToken().getUserId();
-                       String img= "https://graph.facebook.com/"+ loginResult.getAccessToken().getUserId()+"/picture?return_ssl_resources=1";
-                        Login.ImgName=img;
+                        Login.FacebookName = profile.getName();
+                        Login.FacebookID = loginResult.getAccessToken().getUserId();
+                        String img = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                        Login.ImgName = img;
                         startActivity(intent);
                     }
 
@@ -189,10 +191,10 @@ public  static  String FacebookName;
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         Intent intent = new Intent(Login.this, Home.class);
-                        Login.FacebookName =profile.getName();
-                        Login.FacebookID=loginResult.getAccessToken().getUserId();
-                        String img= "https://graph.facebook.com/"+ loginResult.getAccessToken().getUserId()+"/picture?return_ssl_resources=1";
-                        Login.ImgName=img;
+                        Login.FacebookName = profile.getName();
+                        Login.FacebookID = loginResult.getAccessToken().getUserId();
+                        String img = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                        Login.ImgName = img;
                         startActivity(intent);
                     }
 
@@ -327,7 +329,7 @@ public  static  String FacebookName;
         String username = txt_taikhoan.getEditableText().toString().trim();
         String password = txt_matkhau.getEditableText().toString().trim();
 
-        if(username.isEmpty() && password.isEmpty()){
+        if (username.isEmpty() && password.isEmpty()) {
             Toast.makeText(Login.this, "Vui lòng điền thông tin để đăng nhập", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -337,26 +339,26 @@ public  static  String FacebookName;
 
                 if (response.body().getStatusCode() == true) {
 
-                   // Log.v("idCustomer", response.body().getUsers().getIduser());
+                    // Log.v("idCustomer", response.body().getUsers().getIduser());
 
                     Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, Home.class);
 
 
                     method.GetCustomerByIdUser(response.body().getUsers().getIduser()).enqueue(new Callback<CustomerModel>() {
-                       @Override
-                       public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
-                           Login.idCustomer=response.body().getIdcustomer();
-                           Login.NameCustomer=response.body().getCustomerName();
-                           Log.v("idCustomer", idCustomer);
+                        @Override
+                        public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
+                            Login.idCustomer = response.body().getIdcustomer();
+                            Login.NameCustomer = response.body().getCustomerName();
+                            Log.v("idCustomer", idCustomer);
 
-                       }
+                        }
 
-                       @Override
-                       public void onFailure(Call<CustomerModel> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<CustomerModel> call, Throwable t) {
 
-                       }
-                   });
+                        }
+                    });
                     startActivity(intent);
                 } else {
                     Toast.makeText(Login.this, "Vui lòng kiểm tra lại thông tin đăng nhập!", Toast.LENGTH_SHORT).show();
@@ -375,27 +377,39 @@ public  static  String FacebookName;
 
     private void SingUpUser() {
 
-        if (!validateUsername() | !validatePass() | !validateName() | validateEmail()) {
+        if (!validateUsername() | !validatePass() | !validateName() | !validateEmail()) {
             return;
         }
         String usernameSingUp = txt_taikhoandk.getEditableText().toString();
         String passwordSingUp = txt_matkhaudk.getEditableText().toString();
         String emailSingUp = txt_emaildk.getEditableText().toString();
         String fullNameSingUp = txt_hotendk.getEditableText().toString();
+
+
         UserModelPost user = new UserModelPost(emailSingUp, fullNameSingUp, usernameSingUp, passwordSingUp);
 
-        method.InsertUser(user).enqueue(new Callback<UserModelPost>() {
+        method.InsertUser(user).enqueue(new Callback<PostUserModel>() {
             @Override
-            public void onResponse(Call<UserModelPost> call, Response<UserModelPost> response) {
-                Toast.makeText(Login.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<PostUserModel> call, Response<PostUserModel> response) {
+                Log.v("Response", "ok");
+                if(response.body().getStatus().equals("Success")){
+                    Toast.makeText(Login.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this, Login.class));
+                }else
+                {
+                    Toast.makeText(Login.this, response.body().getStatus().toString(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
-            public void onFailure(Call<UserModelPost> call, Throwable t) {
+            public void onFailure(Call<PostUserModel> call, Throwable t) {
                 Toast.makeText(Login.this, "Lỗi", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
+
 
     //Validate SingUp
     //==================================
@@ -405,12 +419,14 @@ public  static  String FacebookName;
         if (emailInput.isEmpty()) {
             txt_emaildk.setError("Vui long nhập Email");
             return false;
-        } else if (!emailInput.matches(emailPattern)) {
-            txt_emaildk.setError("Email không đúng định dạng");
-            return false;
         } else {
-            txt_emaildk.setError(null);
-            return true;
+            if (!emailInput.matches(emailPattern)) {
+                txt_emaildk.setError("Email không đúng định dạng");
+                return false;
+            } else {
+                txt_emaildk.setError(null);
+                return true;
+            }
         }
     }
 
@@ -428,26 +444,28 @@ public  static  String FacebookName;
     private boolean validateUsername() {
         String username = txt_taikhoandk.getEditableText().toString();
         String noWhileSpace = "\\A\\w{4,20}\\z]";
-       // String noWhileSpace = "(?=\\S+$)";
+        // String noWhileSpace = "(?=\\S+$)";
         if (username.isEmpty()) {
             txt_taikhoandk.setError("Vui lòng nhập tên tài khoản");
             return false;
-        } else if (username.length() >= 20) {
-            txt_taikhoandk.setError("Tên tài khoản quá dài");
-            return true;
-        } else if (!username.matches(noWhileSpace)) {
-            txt_taikhoan.setError("Tên đăng nhập không được có khoảng trắng");
-            return false;
         } else {
-            txt_emaildk.setError(null);
-            return true;
+            if (username.length() >= 20) {
+                txt_taikhoandk.setError("Tên tài khoản quá dài");
+                return false;
+            } else {
+
+
+                txt_emaildk.setError(null);
+                return true;
+
+            }
         }
     }
 
     private boolean validatePass() {
         String pass = txt_matkhaudk.getEditableText().toString().trim();
         String passwordVal = "^" +
-               // "(?=.*[0-9])" +
+                // "(?=.*[0-9])" +
                 //"(?=.*[a-z])" +
                 //"(?=.*[A-Z])" +
                 "(?=.*[a-zA-Z])" +
@@ -458,13 +476,14 @@ public  static  String FacebookName;
         if (pass.isEmpty()) {
             txt_matkhaudk.setError("Vui lòng nhập mật khẩu");
             return false;
-        } else if (!pass.matches(passwordVal)) {
-            txt_matkhaudk.setError("Mật khẩu bao gồm chữ và kí tự đặc biệt. Không khoảng trắng");
-            return false;
-        }
-        {
-            txt_matkhaudk.setError(null);
-            return true;
+        } else {
+            if (!pass.matches(passwordVal)) {
+                txt_matkhaudk.setError("Mật khẩu bao gồm chữ và kí tự đặc biệt. Không khoảng trắng");
+                return false;
+            } else {
+                txt_matkhaudk.setError(null);
+                return true;
+            }
         }
     }
     //====================================
@@ -475,12 +494,13 @@ public  static  String FacebookName;
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, 1);
     }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             GoogleSignInAccount s = GoogleSignIn.getLastSignedInAccount(this);
-            if(s!=null){
+            if (s != null) {
                 String persionName = s.getDisplayName();
                 Log.v("Username: ", persionName);
                 Log.v("Username: ", s.getId());
@@ -492,7 +512,7 @@ public  static  String FacebookName;
                 customerModel.setAvatar(String.valueOf(s.getPhotoUrl()));
                 customerModel.setIdgoogle(s.getId());
                 CreateCustomer(customerModel);
-                Intent intent= new Intent(Login.this, Home.class);
+                Intent intent = new Intent(Login.this, Home.class);
                 /*intent.putExtra("idCustomer", customerModel.getIdcustomer());
                 intent.putExtra("CustomerName", customerModel.getCustomerName());
                 intent.putExtra("avatar", customerModel.getAvatar());
@@ -509,33 +529,38 @@ public  static  String FacebookName;
             //updateUI(null);
         }
     }
+
     //====================================
-    private void CreateCustomer(CustomerModel customer){
+    private void CreateCustomer(CustomerModel customer) {
         method.InsertCustomer(customer).enqueue(new Callback<PostCustomer>() {
             @Override
             public void onResponse(Call<PostCustomer> call, Response<PostCustomer> response) {
 
-                if(response.body().getStatusCode().equals("true")){
-                    customerModel =(CustomerModel) response.body().getCustomer1();
-                    Log.v("customermodel",customer.getCustomerName());
-                    Log.v("customermodel","Success");
-                    Toast.makeText(Login.this, "Đăng nhập thành công với tài khoản google"+ customer.getCustomerName()
-                            ,Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (response.body().getStatusCode().equals("true")) {
+                    customerModel = (CustomerModel) response.body().getCustomer1();
+                    Log.v("customermodel", customer.getCustomerName());
+                    Log.v("customermodel", "Success");
+                    Toast.makeText(Login.this, "Đăng nhập thành công với tài khoản google" + customer.getCustomerName()
+                            , Toast.LENGTH_SHORT).show();
+                    Login.idCustomer = customerModel.getIdcustomer();
+                } else {
+                    Log.v("test", customer.getIdgoogle());
+
+
                     method.GetCustomer(customer.getIdgoogle()).enqueue(new Callback<CustomerModel>() {
                         @Override
                         public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
-                            Toast.makeText(Login.this, "Đăng nhập thành công với tài khoản google "+ customer.getCustomerName()
-                                    ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Đăng nhập thành công với tài khoản google " + customer.getCustomerName()
+                                    , Toast.LENGTH_SHORT).show();
                             customerModel = response.body();
-                            Log.v("test",customer.getCustomerName());
+                            Login.idCustomer = customerModel.getIdcustomer();
+                            Log.v("test", customer.getCustomerName());
                         }
 
                         @Override
                         public void onFailure(Call<CustomerModel> call, Throwable t) {
-                            Toast.makeText(Login.this, "Mất kết nói server",Toast.LENGTH_SHORT).show();
-                            Log.v("test","loi");
+                            Toast.makeText(Login.this, "Mất kết nói server", Toast.LENGTH_SHORT).show();
+                            Log.v("test", "loi");
                         }
                     });
 

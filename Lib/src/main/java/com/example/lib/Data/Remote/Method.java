@@ -16,6 +16,7 @@ import com.example.lib.Data.ResultModel.GetFeedBackByHotel;
 import com.example.lib.Data.ResultModel.PostBooking;
 import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.example.lib.Data.ResultModel.PostCustomer;
+import com.example.lib.Data.ResultModel.PostUserModel;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface Method {
     Call<StatusModel> getUserLogin(@Query("username") String username, @Query("pass") String pass);
 
     @POST("api/User/insert-user")
-    Call<UserModelPost> InsertUser(@Body UserModelPost userModelPost);
+    Call<PostUserModel> InsertUser(@Body UserModelPost userModelPost);
 
     @POST("/api/Booking/insert-booking")
     Call<PostBooking> InsertBooking(@Body BookingModel bookingModel);
