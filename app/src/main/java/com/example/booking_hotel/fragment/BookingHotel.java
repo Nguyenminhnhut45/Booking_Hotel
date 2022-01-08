@@ -34,8 +34,8 @@ public class BookingHotel extends Fragment {
 
     HistoryBookingAdapter historyBookingAdapter;
     ListView list_booking;
-    private Method method;
-    ArrayList<BookingModel> list;
+        private Method method;
+        ArrayList<BookingModel> list;
     ArrayList<BookingDetailModel> list1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,46 +58,12 @@ public class BookingHotel extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         BookingModel his = list.get(i);
-                        method.GetBookingDetail(his.getIdbooking()).enqueue(new Callback<BookingDetailModel>() {
-                            @Override
-                            public void onResponse(Call<BookingDetailModel> call, Response<BookingDetailModel> response) {
 
-                              String t = response.body().getIdroom();
-                              String date= response.body().getDateStart();
-                              String end= response.body().getDateEnd();
-                                method.getHotel(response.body().getIdroomNavigation().getIdHotel()).enqueue(new Callback<Hotel>() {
-                                    @Override
-                                    public void onResponse(Call<Hotel> call, Response<Hotel> response) {
-                                        Intent intent= new Intent(getActivity(), BookingDetail.class);
-                                        intent.putExtra("QR",list.get(i).getIqr());
-                                        intent.putExtra("idroom",t);
+                        Intent intent= new Intent(getActivity(), BookingDetail.class);
+                        intent.putExtra("QR",list.get(i).getIqr());
 
-                                        intent.putExtra("ten",response.body().getIdhotel());
+                        startActivity(intent);
 
-                                        intent.putExtra("tenks",response.body().getHotelName());
-                                        intent.putExtra("star",date);
-                                        intent.putExtra("end",end);
-                                        startActivity(intent);
-
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<Hotel> call, Throwable t) {
-
-                                    }
-                                });
-
-
-
-
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<BookingDetailModel> call, Throwable t) {
-
-                            }
-                        });
 
                     }
                 });

@@ -108,6 +108,7 @@ public class ChiTietPhong extends AppCompatActivity {
         mViewPager2 = findViewById(R.id.viewpager2);
         btn_commnet = findViewById(R.id.btn_comment);
         Img_Comment = findViewById(R.id.Img_Comment);
+
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
         CT_Gia = findViewById(R.id.CTP_gia);
         StorageReference storageRef = storage.getReferenceFromUrl("gs://thanh-l-c.appspot.com");
