@@ -8,12 +8,13 @@
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_confilm_pay.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_feedback_detail.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_main2.xml" value="0.11639492753623189" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/fragment_booking_hotel.xml" value="0.21195652173913043" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/fragment_button_2.xml" value="0.2" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/fragment_home.xml" value="0.11330049261083744" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/item_load_history_booking.xml" value="0.128" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/item_search.xml" value="0.2" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/fragment_account.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/fragment_booking_hotel.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_feedback.xml" value="0.11639492753623189" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_history_booking.xml" value="0.1" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_rcv_diadiem.xml" value="0.1" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_rcv_điaiem.xml" value="0.11005434782608696" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_search.xml" value="0.11005434782608696" />
       </map>
     </option>
   </component>

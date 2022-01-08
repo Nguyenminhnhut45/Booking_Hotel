@@ -10,6 +10,7 @@ import com.example.lib.Data.Model.HistoryBooking;
 import com.example.lib.Data.Model.Hotel;
 import com.example.lib.Data.Model.PostFeedBackModel;
 import com.example.lib.Data.Model.Room;
+import com.example.lib.Data.Model.Room1;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
 import com.example.lib.Data.ResultModel.GetFeedBackByHotel;
@@ -60,6 +61,8 @@ public interface Method {
 
     @GET("api/Room")
     Call<List<Room>> getRoom();
+    @GET("api/Room")
+    Call<List<Room1>> getRoomdd();
 
     /*@GET("api/Booking/get-customer")
     Call<HistoryBooking> GetHistoryBooking(@Query("idCustomer") String idCustomer);*/
