@@ -54,7 +54,9 @@
                 app:itemIconTint="@color/icon_color"
                 app:itemRippleColor="@color/black"
                 app:itemTextColor="@color/Black"
-                app:menu="@menu/navigation_bottom"></com.google.android.material.bottomnavigation.BottomNavigationView>
+                app:menu="@menu/navigation_bottom">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
         </RelativeLayout>
 
 
