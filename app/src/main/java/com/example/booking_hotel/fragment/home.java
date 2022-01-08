@@ -146,7 +146,7 @@ Recyclerview_noibat recyclerview_noibat;
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 list = (ArrayList<Room>) response.body();
                 rcv_noibat .setHasFixedSize(true);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
                 recyclerview_noibat = new Recyclerview_noibat(getContext(), list);
                 rcv_noibat.setLayoutManager(layoutManager);
 

@@ -2,6 +2,7 @@ package com.example.booking_hotel.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class FeedBackAdapter extends ArrayAdapter<FeedBackModel>{
         rating_star1.setText(pr.getComment());
         rating1.setRating(pr.getAssess());
         Picasso.get().load(pr.getImageComment()).into(img_feedback);
+        Log.v("hinh",pr.getImageComment());
 
         return view;
     }
