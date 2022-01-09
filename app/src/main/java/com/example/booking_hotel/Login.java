@@ -78,6 +78,8 @@ public class Login extends Activity {
     public static String ImgName;
     public static String FacebookID;
     public static String NameCustomer;
+    public static String mail;
+    public static String imgcustomer;
     private Method method;
     private CustomerModel customerModel;
 
@@ -350,6 +352,8 @@ public class Login extends Activity {
                         public void onResponse(Call<CustomerModel> call, Response<CustomerModel> response) {
                             Login.idCustomer = response.body().getIdcustomer();
                             Login.NameCustomer = response.body().getCustomerName();
+                            Login.mail=response.body().getEmail();
+                            Login.imgcustomer=response.body().getAvatar();
                             Log.v("idCustomer", idCustomer);
 
                         }

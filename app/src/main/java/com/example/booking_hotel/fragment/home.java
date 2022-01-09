@@ -58,7 +58,7 @@ Recyclerview_điaiem recyclerview_điaiem;
         // listView=view.findViewById(R.id.list_noibat); // thuận ẩn code này
 //        adapter = new RoomAdapter(getContext(), R.layout.item_home_noibat);
        getRoom();
-        getRoomdd();
+       getRoomdd();
        // load_rcv_noibat();
        // load_rcv_diadiemdep();
         load_rcv_danhmuc();

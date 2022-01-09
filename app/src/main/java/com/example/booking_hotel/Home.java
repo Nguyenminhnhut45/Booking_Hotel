@@ -1,5 +1,6 @@
 package com.example.booking_hotel;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,8 +58,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         img_user = findViewById(R.id.img_user);
 
 
-        fullname.setText("Thuận Trần");
-        username.setText("nhut2");
+        fullname.setText("null"+Login.idCustomer);
+        username.setText("null" +Login.NameCustomer);
 
         //
         navigationDrawer();

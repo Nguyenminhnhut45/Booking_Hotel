@@ -53,7 +53,7 @@ public class Recyclerview_điaiem extends RecyclerView.Adapter<Recyclerview_đia
         Picasso.get().load(url).into(holder.imvHSP);
         holder.txtTSP.setText(filterList.get(position).getIdHotelNavigation().getHotelName());
        holder.Gia.setText(filterList.get(position).getDescription());
-
+        holder.item_ten_idrom.setText(filterList.get(position).getIdroom());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +79,7 @@ public class Recyclerview_điaiem extends RecyclerView.Adapter<Recyclerview_đia
     public class ViewHolder extends RecyclerView.ViewHolder {
         public Object coordinatorlayout;
         ImageView imvHSP;
-        TextView txtTSP, Gia, Khuvuc;
+        TextView txtTSP, Gia, item_ten_idrom;
         CoordinatorLayout t;
         CardView cardView;
         RelativeLayout relativeLayout;
@@ -89,7 +89,7 @@ public class Recyclerview_điaiem extends RecyclerView.Adapter<Recyclerview_đia
             imvHSP = itemView.findViewById(R.id.img_item_diadiem1);
             txtTSP = itemView.findViewById(R.id.item_ten_diadiem12);
             Gia = itemView.findViewById(R.id.item_mota_diadiem12);
-
+            item_ten_idrom=itemView.findViewById(R.id.item_ten_idrom);
             cardView = itemView.findViewById(R.id.diadiem);
         }
     }

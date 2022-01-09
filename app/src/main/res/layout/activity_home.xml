@@ -73,10 +73,10 @@
                 android:id="@+id/menu_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/menu"
-                android:background="@color/White_GhostWhite"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:background="@color/White_GhostWhite"
+                android:src="@drawable/menu" />
             <FrameLayout
                 android:id="@+id/continer"
                 android:layout_marginTop="50dp"
