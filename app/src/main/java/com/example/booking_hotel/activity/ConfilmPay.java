@@ -47,9 +47,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 //import vn.zalopay.sdk.Environment;
-//import vn.zalopay.sdk.ZaloPayError;
-//import vn.zalopay.sdk.ZaloPaySDK;
-//import vn.zalopay.sdk.listeners.PayOrderListener;
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPayError;
+import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class ConfilmPay extends AppCompatActivity {
 ImageView imageView;
@@ -145,7 +146,7 @@ EditText post_liquidation_name,Giasp1,post_liquidation_desc;
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-      //  ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
+        ZaloPaySDK.init(AppInfo.APP_ID, Environment.SANDBOX);
         btn_THanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,23 +159,23 @@ EditText post_liquidation_name,Giasp1,post_liquidation_desc;
                     if (code.equals("1")) {
 
                         String token = data1.getString("zptranstoken");
-//                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
-//                            @Override
-//                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
-//                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                        });
+                        ZaloPaySDK.getInstance().payOrder(ConfilmPay.this, token, "demozpdk://app", new PayOrderListener() {
+                            @Override
+                            public void onPaymentSucceeded(final String transactionId, final String transToken, final String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentCanceled(String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán bị hủy", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onPaymentError(ZaloPayError zaloPayError, String zpTransToken, String appTransID) {
+                                Toast.makeText(ConfilmPay.this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show();
+                            }
+
+                        });
                         Calendar calendar = Calendar.getInstance();
                         StorageReference mountainsRef = storageRef.child("imgae" + calendar.getTimeInMillis() + ".png");
 
@@ -261,6 +262,6 @@ EditText post_liquidation_name,Giasp1,post_liquidation_desc;
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-       //ZaloPaySDK.getInstance().onResult(intent);
+       ZaloPaySDK.getInstance().onResult(intent);
     }
 }
