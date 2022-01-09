@@ -29,17 +29,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:orientation="vertical">
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewpager2"
+                <ImageView
+                    android:id="@+id/img_chitietphong123"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"/>
-                <me.relex.circleindicator.CircleIndicator3
-                    android:id="@+id/circle_indicator3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_margin="5dp"
-                    app:ci_drawable="@drawable/bg_indication3"
-                    android:layout_gravity="center"/>
+                    android:layout_height="match_parent"
+                    android:src="@drawable/viewhomestay6"
+                    android:scaleType="centerCrop"/>
             </LinearLayout>
 
             <RelativeLayout

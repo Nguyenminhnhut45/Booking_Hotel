@@ -83,6 +83,8 @@ public class ChiTietPhong extends AppCompatActivity {
 
     QRGEncoder qrgEncoder;
 
+    ImageView img_chitietphong123;
+
     private static String img;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private Runnable mRunnable = new Runnable() {
@@ -105,11 +107,16 @@ public class ChiTietPhong extends AppCompatActivity {
         method = ApiUtils.getSOService();
         setContentView(R.layout.activity_chi_tiet_phong);
         btn_datphong = findViewById(R.id.btn_datphong);
-        mViewPager2 = findViewById(R.id.viewpager2);
+        //mViewPager2 = findViewById(R.id.viewpager2);
         btn_commnet = findViewById(R.id.btn_comment);
         Img_Comment = findViewById(R.id.Img_Comment);
 
-        mCircleIndicator3 = findViewById(R.id.circle_indicator3);
+        //Nhựt
+        img_chitietphong123 = findViewById(R.id.img_chitietphong123);
+
+
+
+       // mCircleIndicator3 = findViewById(R.id.circle_indicator3);
         CT_Gia = findViewById(R.id.CTP_gia);
         StorageReference storageRef = storage.getReferenceFromUrl("gs://thanh-l-c.appspot.com");
         feedBackAdapter = new FeedBackAdapter(ChiTietPhong.this, R.layout.item_feedback);
