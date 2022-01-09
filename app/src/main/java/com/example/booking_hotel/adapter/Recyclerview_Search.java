@@ -50,7 +50,7 @@ public class Recyclerview_Search extends RecyclerView.Adapter<Recyclerview_Searc
         Picasso.get().load(url).into(holder.imvHSP);
      holder.txtTSP.setText(filterList.get(position).getIdHotelNavigation().getHotelName());
     holder.Gia.setText( filterList.get(position).getPrice().toString()+"/VNĐ");
-
+holder.Khuvuc.setText(filterList.get(position).getIdroom());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

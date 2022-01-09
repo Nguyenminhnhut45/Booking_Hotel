@@ -3,9 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/activity_home.xml" value="0.11398176291793313" />
         <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/activity_login.xml" value="0.23125" />
-        <entry key="..\:/Learn_Hutech/AndroidPrograming/Booking_Hotel/app/src/main/res/layout/menu_header.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_booking_detail.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_confilm_pay.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/activity_feedback_detail.xml" value="0.11639492753623189" />
@@ -18,6 +16,7 @@
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_feedback.xml" value="0.11639492753623189" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_history_booking.xml" value="0.1" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_rcv_diadiem.xml" value="0.1" />
+        <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_rcv_noibat.xml" value="0.1" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_load_rcv_điaiem.xml" value="0.11005434782608696" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/item_search.xml" value="0.11005434782608696" />
         <entry key="..\:/Users/Hai Dang/AndroidStudioProjects/Booking hotel 1/Booking_Hotel/app/src/main/res/layout/menu_header.xml" value="0.11005434782608696" />
