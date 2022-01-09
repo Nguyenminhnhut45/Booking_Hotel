@@ -35,7 +35,7 @@ public class Account extends Fragment {
         btn_test1 = (TextView) view.findViewById(R.id.btn_test1);
 
         Picasso.get().load(Login.ImgName).into(imgFB);
-btn_profile.setText(Login.FacebookName);
+        btn_profile.setText(Login.FacebookName);
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
