@@ -209,6 +209,7 @@ EditText post_liquidation_name,Giasp1,post_liquidation_desc;
                                     Method methods = ApiUtils.getSOService();
                                     BookingModel bookingModel= new BookingModel();
                                     bookingModel.setIdcustomer(Login.idCustomer);
+
                                     bookingModel.setIqr(String.valueOf(downloadUri));
                                     methods.InsertBooking(bookingModel).enqueue(new Callback<PostBooking>() {
                                         @Override

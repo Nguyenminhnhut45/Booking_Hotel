@@ -4,10 +4,10 @@ package com.example.lib.Data.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 
 
-
-public class BookingModel {
+public class ListBookingModel {
 
     @SerializedName("idbooking")
     @Expose
@@ -27,6 +27,12 @@ public class BookingModel {
     @SerializedName("iqr")
     @Expose
     private String iqr;
+    @SerializedName("idcustomerNavigation")
+    @Expose
+    private CustomerModel idcustomerNavigation;
+    @SerializedName("bookingDetails")
+    @Expose
+    private BookingDetailModel bookingDetails = null;
 
     public String getIdbooking() {
         return idbooking;
@@ -76,5 +82,20 @@ public class BookingModel {
         this.iqr = iqr;
     }
 
-}
+    public CustomerModel getIdcustomerNavigation() {
+        return idcustomerNavigation;
+    }
 
+    public void setIdcustomerNavigation(CustomerModel idcustomerNavigation) {
+        this.idcustomerNavigation = idcustomerNavigation;
+    }
+
+    public BookingDetailModel getBookingDetails() {
+        return bookingDetails;
+    }
+
+    public void setBookingDetails(BookingDetailModel bookingDetails) {
+        this.bookingDetails = bookingDetails;
+    }
+
+}

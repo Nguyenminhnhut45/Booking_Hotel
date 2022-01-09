@@ -1,16 +1,23 @@
 package com.example.lib.Data.Remote;
 
+import androidx.constraintlayout.widget.Guideline;
+
+import com.example.lib.Data.Model.BookingDetailModel;
 import com.example.lib.Data.Model.BookingModel;
 import com.example.lib.Data.Model.CustomerModel;
 import com.example.lib.Data.Model.FeedBackModel;
+import com.example.lib.Data.Model.HistoryBooking;
+import com.example.lib.Data.Model.Hotel;
 import com.example.lib.Data.Model.PostFeedBackModel;
 import com.example.lib.Data.Model.Room;
+import com.example.lib.Data.Model.Room1;
 import com.example.lib.Data.Model.StatusModel;
 import com.example.lib.Data.Model.UserModelPost;
 import com.example.lib.Data.ResultModel.GetFeedBackByHotel;
 import com.example.lib.Data.ResultModel.PostBooking;
 import com.example.lib.Data.ResultModel.PostBookingDetail;
 import com.example.lib.Data.ResultModel.PostCustomer;
+import com.example.lib.Data.ResultModel.PostUserModel;
 
 import java.util.List;
 
@@ -26,7 +33,7 @@ public interface Method {
     Call<StatusModel> getUserLogin(@Query("username") String username, @Query("pass") String pass);
 
     @POST("api/User/insert-user")
-    Call<UserModelPost> InsertUser(@Body UserModelPost userModelPost);
+    Call<PostUserModel> InsertUser(@Body UserModelPost userModelPost);
 
     @POST("/api/Booking/insert-booking")
     Call<PostBooking> InsertBooking(@Body BookingModel bookingModel);
@@ -54,5 +61,19 @@ public interface Method {
 
     @GET("api/Room")
     Call<List<Room>> getRoom();
+    @GET("api/Room")
+    Call<List<Room1>> getRoomdd();
+
+    /*@GET("api/Booking/get-customer")
+    Call<HistoryBooking> GetHistoryBooking(@Query("idCustomer") String idCustomer);*/
+
+    @GET("api/Booking/get-customer")
+    Call<List<BookingModel>> GetHistoryBooking(@Query("idCustomer") String idCustomer);
+
+    @GET("/api/BookingDetail/get-idbooking")
+    Call<BookingDetailModel> GetBookingDetail(@Query("idBooking") String idBooking);
+
+    @GET("api/Hotel/{idHotel}")
+    Call<Hotel> getHotel (@Path("idHotel") String idHotel);
 
 }

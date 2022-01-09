@@ -13,12 +13,12 @@
         android:padding="10dp"
         android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="180dp"
-            android:layout_height="match_parent">
+            android:layout_width="150dp"
+            android:layout_height="150dp">
             <ImageView
+                android:id="@+id/img_qr"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:src="@drawable/viewhomestay6"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"/>
         </LinearLayout>
 
@@ -28,7 +28,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="5dp">
             <TextView
-                android:id="@+id/item_ten_diadiem"
+                android:id="@+id/txt_hotelName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bình định"
@@ -36,11 +36,13 @@
                 android:textColor="@color/Black"
                 android:fontFamily="sans-serif"/>
             <TextView
+                android:id="@+id/txt_datetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Người đặt: Nguyễn Minh Nhựt"
                 android:textStyle="italic"/>
             <TextView
+                android:id="@+id/txt_maphong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ngày đặt: 12/01/2022"/>
@@ -54,14 +56,16 @@
                 android:orientation="horizontal">
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tình trạng:" />
+                    android:text="Trạng thái:" />
 
                 <TextView
+                    android:id="@+id/txt_checkin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" chờ xác duyệt"
+                    android:text=" "
                     android:textColor="@color/Red"/>
             </LinearLayout>
 

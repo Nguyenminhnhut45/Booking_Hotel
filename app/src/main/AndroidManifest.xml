@@ -18,10 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Hotel">
         <activity
+            android:name=".activity.BookingDetail"
+            android:exported="false" />
+        <activity
             android:name=".activity.ConfilmPay"
             android:exported="true"
-            android:launchMode="singleTask"/>
-
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.QuenMatKhau"
             android:exported="false" />
@@ -55,7 +57,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.Register"
             android:exported="false" />
@@ -64,8 +65,7 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".intro.OnBoarding"
             android:exported="false" />
@@ -74,8 +74,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-           >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

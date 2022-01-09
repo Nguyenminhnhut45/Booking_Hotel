@@ -28,6 +28,18 @@ public class BookingDetailModel {
     @SerializedName("idbookingNavigation")
     @Expose
     private BookingModel idbookingNavigation;
+    @SerializedName("idroomNavigation")
+    @Expose
+    private Room idroomNavigation;
+
+    public Room getIdroomNavigation() {
+        return idroomNavigation;
+    }
+
+    public void setIdroomNavigation(Room idroomNavigation) {
+        this.idroomNavigation = idroomNavigation;
+    }
+
 
     public String getIdroom() {
         return idroom;
