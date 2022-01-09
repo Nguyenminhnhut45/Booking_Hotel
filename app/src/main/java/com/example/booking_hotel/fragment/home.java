@@ -139,6 +139,8 @@ Recyclerview_noibat recyclerview_noibat;
 //    }
 
     private void getRoom () {
+
+
         Method method = ApiUtils.getSOService();
         list = new ArrayList<>();
         method.getRoom().enqueue(new Callback<List<Room>>() {
@@ -149,7 +151,8 @@ Recyclerview_noibat recyclerview_noibat;
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                 recyclerview_noibat = new Recyclerview_noibat(getContext(), list);
                 rcv_noibat.setLayoutManager(layoutManager);
-
+                rcv_noibat.setHasFixedSize(true);
+                rcv_noibat.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                 rcv_noibat.setAdapter(recyclerview_noibat);
             }
 

@@ -14,9 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.booking_hotel.fragment.Account;
 import com.example.booking_hotel.fragment.BookingHotel;
+import com.example.booking_hotel.fragment.DoiMatKhau;
+import com.example.booking_hotel.fragment.ThongTinCaNhan;
 import com.example.booking_hotel.fragment.button_2;
 import com.example.booking_hotel.fragment.home;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +36,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     ImageView menu_icon;
     LinearLayout contentView;
 
+    TextView fullname, username;
+    ImageView img_user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView = findViewById(R.id.navigation_view);
         menu_icon = findViewById(R.id.menu_icon);
         contentView = findViewById(R.id.content);
+
+        fullname = findViewById(R.id.txt_fullnameuser);
+        username = findViewById(R.id.txt_usernameuser);
+        img_user = findViewById(R.id.img_user);
+
+
+        fullname.setText("Thuận Trần");
+        username.setText("nhut2");
+
         //
         navigationDrawer();
 
@@ -96,7 +111,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //                        return true;
 //
                     case R.id.menu1_Profile:
-                        fragment = new Account();
+                        fragment = new ThongTinCaNhan();
+                        loadFragment(fragment);
+                        onBackPressed();
+                        return true;
+
+                    case R.id.menu1_doimk1:
+                        fragment = new DoiMatKhau();
                         loadFragment(fragment);
                         onBackPressed();
                         return true;

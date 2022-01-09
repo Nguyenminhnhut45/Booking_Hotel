@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable-v24/bg_bleach.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable/bg_bo.xml" value="0.14322916666666666" />
+        <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable/bg_button_login.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable/bg_indication3.xml" value="0.14322916666666666" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable/bg_menu.xml" value="0.26614583333333336" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/drawable/bg_search.xml" value="0.14322916666666666" />
@@ -17,11 +18,15 @@
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_noibat.xml" value="0.11302083333333333" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_quen_mat_khau.xml" value="0.25" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/activity_xephang.xml" value="0.11302083333333333" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_booking_hotel.xml" value="0.2359375" />
+        <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_button_2.xml" value="0.25" />
+        <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_doi_mat_khau.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/fragment_thong_tin_ca_nhan.xml" value="0.25" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/item_home_noibat.xml" value="0.2" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/item_img_chitietphong.xml" value="0.26197916666666665" />
         <entry key="..\:/Android Studio/github/DAMH/5_1/Booking_Hotel/app/src/main/res/layout/item_load_history_booking.xml" value="0.25" />

@@ -156,9 +156,12 @@
 
                 <TextView
                     android:id="@+id/btn_forgot_password"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
+                    android:layout_gravity="end"
+                    android:textSize="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="Quên mật khẩu?"
                     android:textAlignment="textEnd"
                     android:textColor="#616161" />
